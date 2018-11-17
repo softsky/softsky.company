@@ -1,4 +1,4 @@
-# avalanche global
+# avalache global
 
 Welcome to the project documentation!
 

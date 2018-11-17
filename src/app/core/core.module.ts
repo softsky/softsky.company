@@ -12,9 +12,20 @@ import { HttpCacheService } from './http/http-cache.service';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
+import { Auth0Module, Auth0Service } from 'ngx-auth0';
+import { AUTH_CONFIG } from '../auth0.config';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    TranslateModule,
+    RouterModule,
+    Auth0Module.forRoot({
+      WebAuthConfig: AUTH_CONFIG,
+      connection: 'Username-Password-Authentication'
+    })
+  ],
   providers: [
     AuthenticationService,
     AuthenticationGuard,
@@ -23,6 +34,7 @@ import { CacheInterceptor } from './http/cache.interceptor';
     ApiPrefixInterceptor,
     ErrorHandlerInterceptor,
     CacheInterceptor,
+    Auth0Service,
     {
       provide: HttpClient,
       useClass: HttpService

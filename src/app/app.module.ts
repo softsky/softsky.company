@@ -17,6 +17,8 @@ import { ShellModule } from './shell/shell.module';
 import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { Auth0Module, Auth0Service } from 'ngx-auth0';
+import { AUTH_CONFIG } from './auth0.config';
 
 @NgModule({
   imports: [
@@ -33,6 +35,10 @@ import { AppRoutingModule } from './app-routing.module';
     HomeModule,
     LoginModule,
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
+    Auth0Module.forRoot({
+      WebAuthConfig: AUTH_CONFIG,
+      connection: 'Username-Password-Authentication'
+    }),
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

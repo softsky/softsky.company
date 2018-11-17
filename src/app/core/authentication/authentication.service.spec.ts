@@ -1,4 +1,4 @@
-import { Logger } from '../logger.service'
+import { Logger } from '../logger.service';
 import { TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
 
 import { AuthenticationService } from './authentication.service';
@@ -31,10 +31,10 @@ describe('AuthenticationService', () => {
       tick();
 
       // Assert
-      request.subscribe(bool:boolean => {
-        log.info(bool);
-        expect(bool).toBeDefined();
-        expect(bool).toBeTrue();
+      request.subscribe((b: boolean) => {
+        log.info(b);
+        expect(b).toBeDefined();
+        expect(b).toBeTrue();
       });
     }));
 
@@ -53,7 +53,6 @@ describe('AuthenticationService', () => {
         expect(authenticationService.isAuthenticated).toBe(true);
       });
     }));
-
   });
 
   describe('logout', () => {
