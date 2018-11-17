@@ -44,7 +44,7 @@ describe('AuthenticationGuard', () => {
 
   it('should return false and redirect to login if user is not authenticated', () => {
     // Arrange
-    authenticationService.credentials = null;
+    authenticationService.logout();
 
     // Act
     const result = authenticationGuard.canActivate(null, mockSnapshot);

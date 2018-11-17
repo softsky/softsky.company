@@ -1,8 +1,7 @@
+import { Logger } from '../logger.service'
 import { TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
 
-import { AuthenticationService, Credentials } from './authentication.service';
-
-const credentialsKey = 'credentials';
+import { AuthenticationService } from './authentication.service';
 
 describe('AuthenticationService', () => {
   let authenticationService: AuthenticationService;
@@ -18,13 +17,12 @@ describe('AuthenticationService', () => {
   }));
 
   afterEach(() => {
-    // Cleanup
-    localStorage.removeItem(credentialsKey);
-    sessionStorage.removeItem(credentialsKey);
+    // empty
   });
 
   describe('login', () => {
     it('should return credentials', fakeAsync(() => {
+      const log = new Logger('Login');
       // Act
       const request = authenticationService.login({
         username: 'toto',
@@ -33,14 +31,15 @@ describe('AuthenticationService', () => {
       tick();
 
       // Assert
-      request.subscribe(credentials => {
-        expect(credentials).toBeDefined();
-        expect(credentials.token).toBeDefined();
+      request.subscribe(bool:boolean => {
+        log.info(bool);
+        expect(bool).toBeDefined();
+        expect(bool).toBeTrue();
       });
     }));
 
     it('should authenticate user', fakeAsync(() => {
-      expect(authenticationService.isAuthenticated()).toBe(false);
+      expect(authenticationService.isAuthenticated).toBe(false);
 
       // Act
       const request = authenticationService.login({
@@ -51,42 +50,10 @@ describe('AuthenticationService', () => {
 
       // Assert
       request.subscribe(() => {
-        expect(authenticationService.isAuthenticated()).toBe(true);
-        expect(authenticationService.credentials).toBeDefined();
-        expect(authenticationService.credentials).not.toBeNull();
-        expect((<Credentials>authenticationService.credentials).token).toBeDefined();
-        expect((<Credentials>authenticationService.credentials).token).not.toBeNull();
+        expect(authenticationService.isAuthenticated).toBe(true);
       });
     }));
 
-    it('should persist credentials for the session', fakeAsync(() => {
-      // Act
-      const request = authenticationService.login({
-        username: 'toto',
-        password: '123'
-      });
-      tick();
-
-      // Assert
-      request.subscribe(() => {
-        expect(sessionStorage.getItem(credentialsKey)).not.toBeNull();
-      });
-    }));
-
-    it('should persist credentials across sessions', fakeAsync(() => {
-      // Act
-      const request = authenticationService.login({
-        username: 'toto',
-        password: '123',
-        remember: true
-      });
-      tick();
-
-      // Assert
-      request.subscribe(() => {
-        expect(localStorage.getItem(credentialsKey)).not.toBeNull();
-      });
-    }));
   });
 
   describe('logout', () => {
@@ -100,17 +67,12 @@ describe('AuthenticationService', () => {
 
       // Assert
       loginRequest.subscribe(() => {
-        expect(authenticationService.isAuthenticated()).toBe(true);
+        expect(authenticationService.isAuthenticated).toBe(true);
 
-        const request = authenticationService.logout();
+        authenticationService.logout({});
         tick();
 
-        request.subscribe(() => {
-          expect(authenticationService.isAuthenticated()).toBe(false);
-          expect(authenticationService.credentials).toBeNull();
-          expect(sessionStorage.getItem(credentialsKey)).toBeNull();
-          expect(localStorage.getItem(credentialsKey)).toBeNull();
-        });
+        expect(authenticationService.isAuthenticated).toBe(false);
       });
     }));
 
@@ -125,17 +87,12 @@ describe('AuthenticationService', () => {
 
       // Assert
       loginRequest.subscribe(() => {
-        expect(authenticationService.isAuthenticated()).toBe(true);
+        expect(authenticationService.isAuthenticated).toBe(true);
 
-        const request = authenticationService.logout();
+        authenticationService.logout({});
         tick();
 
-        request.subscribe(() => {
-          expect(authenticationService.isAuthenticated()).toBe(false);
-          expect(authenticationService.credentials).toBeNull();
-          expect(sessionStorage.getItem(credentialsKey)).toBeNull();
-          expect(localStorage.getItem(credentialsKey)).toBeNull();
-        });
+        expect(authenticationService.isAuthenticated).toBe(false);
       });
     }));
   });
