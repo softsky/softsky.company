@@ -18,7 +18,8 @@
     "prettier:check": "prettier --list-different \"./{src,e2e}/**/*.{ts,js,scss}\"",
     "postinstall": "npm run prettier -s",
     "precommit": "pretty-quick --staged",
-    "generate": "ng generate"
+    "generate": "ng generate",
+    "gh-pages": "npm run build && git add dist -f && git commit -m \"$(date)\";git subtree push --prefix dist origin gh-pages && git reset --hard HEAD^1"
   },
   "dependencies": {
     "@angular/animations": "^7.0.0",
