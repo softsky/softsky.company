@@ -14,7 +14,7 @@ export const environment = {
     backend: {
       clientID: 'FIhO7vNId2Al1wdfKJDhBuY4NwGZLB5i',
       domain: 'softsky.eu.auth0.com',
-      redirectUri: 'http://avalache.github.io/callback',
+      redirectUri: 'http://avalache.github.io/auth-callback',
       scope: 'openid',
       responseType: 'token id_token'
     },

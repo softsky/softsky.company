@@ -18,12 +18,17 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AuthLoader, AuthModule } from '@ngx-auth/core';
-import { Auth0Module, Auth0StaticLoader } from '@ngx-auth/auth0';
+import { AuthLoader, AuthModule } from '@ngx-auth/core';
+import { Auth0Module, Auth0StaticLoader } from '@ngx-auth/auth0';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { ChangePasswordComponent } from './account/change-password/change-password.component';
+import { PurchasesComponent } from './purchases/purchases.component';
+import { NetworkComponent } from './network/network.component';
 
 const AUTH_CONFIG =  environment.AUTH_CONFIG;
-export function auth0Factory(): AuthLoader {
-  return new Auth0StaticLoader(environment.AUTH_CONFIG);
+export function auth0Factory(): AuthLoader {
+  return new Auth0StaticLoader(environment.AUTH_CONFIG);
 }
 
 @NgModule({
@@ -41,13 +46,13 @@ export function auth0Factory(): AuthLoader {
     HomeModule,
     LoginModule,
     Auth0Module.forRoot({
-      provide: AuthLoader,
-      useFactory: (auth0Factory)
-    }),
+      provide: AuthLoader,
+      useFactory: (auth0Factory)
+    }),
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, AuthCallbackComponent, ProfileComponent, ChangePasswordComponent, PurchasesComponent, NetworkComponent],
   providers: [
   ],
   bootstrap: [AppComponent]
