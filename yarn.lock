@@ -5973,11 +5973,6 @@ netmask@^1.0.6:
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
   integrity sha1-ICl+idhvb2QA8lDZ9Pa0wZRfzTU=
 
-ngx-environment-variable@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-environment-variable/-/ngx-environment-variable-0.0.1.tgz#2ff298e56ecc338ff327ea35991796758bc67f4b"
-  integrity sha512-w386qkxp4Yhh9SKlxn05FT4jaskVrXrO7AIS6RinUmi517PXB6qlrYzp2JAglQAQjT4bZkb4D9rVpuYW+5HWpg==
-
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
