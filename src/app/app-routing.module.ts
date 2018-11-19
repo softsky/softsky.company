@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Shell } from '@app/shell/shell.service';
 
-import { HomeComponent } from './account/profile/profile.component';
+import { HomeComponent } from './home/home.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { ChangePasswordComponent } from './account/change-password/change-password.component';
@@ -37,10 +37,6 @@ export const routes: Routes = [
           path: 'purchases',
           component: PurchasesComponent,
           canActivate: [AuthGuard]
-        },
-        {
-          path: 'public',
-          component: PublicComponent
         },
         {
           path: 'auth-callback',
