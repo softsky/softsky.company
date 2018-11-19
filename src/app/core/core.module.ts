@@ -4,16 +4,21 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouteReusableStrategy } from './route-reusable-strategy';
-import { AuthenticationService } from './authentication/authentication.service';
-import { AuthenticationGuard } from './authentication/authentication.guard';
 import { I18nService } from './i18n.service';
 import { HttpService } from './http/http.service';
 import { HttpCacheService } from './http/http-cache.service';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
-import { Auth0Module, Auth0Service } from 'ngx-auth0';
-import { AUTH_CONFIG } from '../auth0.config';
+
+import { environment } from '@env/environment';
+
+import { AuthLoader, AuthModule } from '@ngx-auth/core';
+import { Auth0Module, Auth0StaticLoader, Auth0Service } from '@ngx-auth/auth0';
+
+function auth0Factory(): AuthLoader {
+  return new Auth0StaticLoader(environment.AUTH_CONFIG);
+}
 
 @NgModule({
   imports: [
@@ -22,19 +27,16 @@ import { AUTH_CONFIG } from '../auth0.config';
     TranslateModule,
     RouterModule,
     Auth0Module.forRoot({
-      WebAuthConfig: AUTH_CONFIG,
-      connection: 'Username-Password-Authentication'
+      provide: AuthLoader,
+      useFactory: auth0Factory
     })
   ],
   providers: [
-    AuthenticationService,
-    AuthenticationGuard,
     I18nService,
     HttpCacheService,
     ApiPrefixInterceptor,
     ErrorHandlerInterceptor,
     CacheInterceptor,
-    Auth0Service,
     {
       provide: HttpClient,
       useClass: HttpService
@@ -43,7 +45,8 @@ import { AUTH_CONFIG } from '../auth0.config';
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy
     }
-  ]
+  ],
+  exports: [Auth0Service]
 })
 export class CoreModule {
   constructor(
