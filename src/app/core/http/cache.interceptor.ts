@@ -10,9 +10,10 @@ import { HttpCacheService } from './http-cache.service';
  */
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
+
   private forceUpdate = false;
 
-  constructor(private httpCacheService: HttpCacheService) {}
+  constructor(private httpCacheService: HttpCacheService) { }
 
   /**
    * Configures interceptor options
@@ -39,17 +40,19 @@ export class CacheInterceptor implements HttpInterceptor {
         subscriber.next(new HttpResponse(cachedData as Object));
         subscriber.complete();
       } else {
-        next.handle(request).subscribe(
-          event => {
-            if (event instanceof HttpResponse) {
-              this.httpCacheService.setCacheData(request.urlWithParams, event);
-            }
-            subscriber.next(event);
-          },
-          error => subscriber.error(error),
-          () => subscriber.complete()
-        );
+        next.handle(request)
+          .subscribe(
+            event => {
+              if (event instanceof HttpResponse) {
+                this.httpCacheService.setCacheData(request.urlWithParams, event);
+              }
+              subscriber.next(event);
+            },
+            error => subscriber.error(error),
+            () => subscriber.complete()
+          );
       }
     });
   }
+
 }

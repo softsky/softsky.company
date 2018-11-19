@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 
-import { AuthService, CoreModule, MockAuthService } from '@app/core';
+import { AuthenticationService, CoreModule, MockAuthenticationService } from '@app/core';
 
 import { ShellComponent } from './shell.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,9 +24,15 @@ describe('ShellComponent', () => {
         MaterialModule,
         CoreModule
       ],
-      providers: [{ provide: AuthService, useClass: MockAuthService }],
-      declarations: [HeaderComponent, ShellComponent]
-    }).compileComponents();
+      providers: [
+        { provide: AuthenticationService, useClass: MockAuthenticationService }
+      ],
+      declarations: [
+        HeaderComponent,
+        ShellComponent
+      ]
+  })
+    .compileComponents();
   }));
 
   beforeEach(() => {

@@ -3,7 +3,9 @@
     "version": "5.3.0",
     "props": {
       "appName": "avalache global",
-      "target": ["web"],
+      "target": [
+        "web"
+      ],
       "pwa": true,
       "ui": "material",
       "layout": "simple",
@@ -11,8 +13,8 @@
       "lazy": true,
       "angulartics": true,
       "analyticsProvider": "ga",
-      "googleAnalyticsAccount": "UA-129309010-1",
-      "prettier": true,
+      "googleAnalyticsAccount": "",
+      "prettier": false,
       "projectName": "avalache-global",
       "packageManager": "npm",
       "mobile": []

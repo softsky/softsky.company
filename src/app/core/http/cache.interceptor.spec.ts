@@ -42,14 +42,18 @@ describe('CacheInterceptor', () => {
       interceptorOptions = null;
     });
 
-    beforeEach(inject(
-      [HttpClient, HttpTestingController, HttpCacheService],
-      (_http: HttpClient, _httpMock: HttpTestingController, _httpCacheService: HttpCacheService) => {
-        http = _http;
-        httpMock = _httpMock;
-        httpCacheService = _httpCacheService;
-      }
-    ));
+    beforeEach(inject([
+      HttpClient,
+      HttpTestingController,
+      HttpCacheService
+    ], (_http: HttpClient,
+        _httpMock: HttpTestingController,
+        _httpCacheService: HttpCacheService) => {
+
+      http = _http;
+      httpMock = _httpMock;
+      httpCacheService = _httpCacheService;
+    }));
 
     it('should cache the request', () => {
       // Act
@@ -78,13 +82,10 @@ describe('CacheInterceptor', () => {
 
     it('should not cache the request in case of error', () => {
       // Act
-      http.get('/toto').subscribe(
-        () => {},
-        () => {
-          // Assert
-          expect(httpCacheService.getCacheData('/toto')).toBeNull();
-        }
-      );
+      http.get('/toto').subscribe(() => {}, () => {
+        // Assert
+        expect(httpCacheService.getCacheData('/toto')).toBeNull();
+      });
 
       httpMock.expectOne({}).flush(null, {
         status: 404,
@@ -98,14 +99,18 @@ describe('CacheInterceptor', () => {
       interceptorOptions = { update: true };
     });
 
-    beforeEach(inject(
-      [HttpClient, HttpTestingController, HttpCacheService],
-      (_http: HttpClient, _httpMock: HttpTestingController, _httpCacheService: HttpCacheService) => {
-        http = _http;
-        httpMock = _httpMock;
-        httpCacheService = _httpCacheService;
-      }
-    ));
+    beforeEach(inject([
+      HttpClient,
+      HttpTestingController,
+      HttpCacheService
+    ], (_http: HttpClient,
+        _httpMock: HttpTestingController,
+        _httpCacheService: HttpCacheService) => {
+
+      http = _http;
+      httpMock = _httpMock;
+      httpCacheService = _httpCacheService;
+    }));
 
     afterEach(() => {
       httpCacheService.cleanCache();
@@ -121,6 +126,7 @@ describe('CacheInterceptor', () => {
       http.get('/toto').subscribe(response => {
         // Assert
         expect(response).toEqual('newData');
+
       });
 
       httpMock.expectOne({ url: '/toto' }).flush('newData');

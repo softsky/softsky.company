@@ -9,8 +9,6 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { environment } from '@env/environment';
 import { Logger, I18nService } from '@app/core';
 
-import { Auth0Module } from 'ngx-auth0';
-
 const log = new Logger('App');
 
 @Component({
@@ -19,16 +17,15 @@ const log = new Logger('App');
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private titleService: Title,
-    private translateService: TranslateService,
-    // do not remove the analytics injection, even if the call in ngOnInit() is removed
-    // this injection initializes page tracking through the router
-    private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
-    private i18nService: I18nService
-  ) {}
+
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private titleService: Title,
+              private translateService: TranslateService,
+              // do not remove the analytics injection, even if the call in ngOnInit() is removed
+              // this injection initializes page tracking through the router
+              private angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics,
+              private i18nService: I18nService) { }
 
   ngOnInit() {
     // Setup logger
@@ -38,7 +35,7 @@ export class AppComponent implements OnInit {
 
     log.debug('init');
 
-    this.angulartics2GoogleAnalytics.eventTrack(environment.version, { category: 'App initialized' });
+    this.angulartics2GoogleAnalytics.eventTrack(environment.version, {category: 'App initialized'});
 
     // Setup translations
     this.i18nService.init(environment.defaultLanguage, environment.supportedLanguages);
@@ -65,4 +62,5 @@ export class AppComponent implements OnInit {
         }
       });
   }
+
 }

@@ -8,6 +8,7 @@ const defaultLanguage = 'en-US';
 const supportedLanguages = ['eo', 'en-US', 'fr-FR'];
 
 class MockTranslateService {
+
   currentLang: string;
   onLangChange = new Subject();
 
@@ -23,7 +24,8 @@ class MockTranslateService {
     return 'en-US';
   }
 
-  setTranslation(lang: string, translations: Object, shouldMerge?: boolean) {}
+  setTranslation(lang: string, translations: Object, shouldMerge?: boolean) { }
+
 }
 
 describe('I18nService', () => {
@@ -33,24 +35,30 @@ describe('I18nService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [I18nService, { provide: TranslateService, useClass: MockTranslateService }]
+      providers: [
+        I18nService,
+        { provide: TranslateService, useClass: MockTranslateService },
+      ]
     });
   });
 
-  beforeEach(inject(
-    [I18nService, TranslateService],
-    (_i18nService: I18nService, _translateService: TranslateService) => {
-      i18nService = _i18nService;
-      translateService = _translateService;
+  beforeEach(inject([
+    I18nService,
+    TranslateService
+  ], (_i18nService: I18nService,
+      _translateService: TranslateService) => {
 
-      // Create spies
-      onLangChangeSpy = jasmine.createSpy('onLangChangeSpy');
-      translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+    i18nService = _i18nService;
+    translateService = _translateService;
+
+    // Create spies
+    onLangChangeSpy = jasmine.createSpy('onLangChangeSpy');
+    translateService.onLangChange
+      .subscribe((event: LangChangeEvent) => {
         onLangChangeSpy(event.lang);
       });
-      spyOn(translateService, 'use').and.callThrough();
-    }
-  ));
+    spyOn(translateService, 'use').and.callThrough();
+  }));
 
   afterEach(() => {
     // Cleanup
@@ -140,4 +148,5 @@ describe('I18nService', () => {
       expect(currentLanguage).toEqual(defaultLanguage);
     });
   });
+
 });

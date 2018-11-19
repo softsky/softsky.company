@@ -10,20 +10,30 @@ describe('QuoteService', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CoreModule, HttpClientTestingModule],
-      providers: [HttpCacheService, QuoteService]
+      imports: [
+        CoreModule,
+        HttpClientTestingModule
+      ],
+      providers: [
+        HttpCacheService,
+        QuoteService
+      ]
     });
   }));
 
-  beforeEach(inject(
-    [HttpCacheService, QuoteService, HttpTestingController],
-    (htttpCacheService: HttpCacheService, _quoteService: QuoteService, _httpMock: HttpTestingController) => {
-      quoteService = _quoteService;
-      httpMock = _httpMock;
+  beforeEach(inject([
+    HttpCacheService,
+    QuoteService,
+    HttpTestingController
+  ], (htttpCacheService: HttpCacheService,
+      _quoteService: QuoteService,
+      _httpMock: HttpTestingController) => {
 
-      htttpCacheService.cleanCache();
-    }
-  ));
+    quoteService = _quoteService;
+    httpMock = _httpMock;
+
+    htttpCacheService.cleanCache();
+  }));
 
   afterEach(() => {
     httpMock.verify();

@@ -19,6 +19,8 @@ import { LoginComponent } from './login.component';
     MaterialModule,
     LoginRoutingModule
   ],
-  declarations: [LoginComponent]
+  declarations: [
+    LoginComponent
+  ]
 })
-export class LoginModule {}
+export class LoginModule { }

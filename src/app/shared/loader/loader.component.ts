@@ -6,14 +6,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit {
-  @Input()
-  isLoading = false;
-  @Input()
-  size = 1;
-  @Input()
-  message: string;
 
-  constructor() {}
+  @Input() isLoading = false;
+  @Input() size = 1;
+  @Input() message: string;
 
-  ngOnInit() {}
+  constructor() { }
+
+  ngOnInit() { }
+
 }
