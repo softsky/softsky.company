@@ -2,6 +2,7 @@
 
 # Compiled output
 /dist
+/accessKeys.csv
 /tmp
 /out-tsc
 
@@ -52,4 +53,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-*.csv
