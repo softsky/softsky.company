@@ -18,6 +18,14 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { AuthLoader, AuthModule } from '@ngx-auth/core';
+import { Auth0Module, Auth0StaticLoader } from '@ngx-auth/auth0';
+
+const AUTH_CONFIG =  environment.AUTH_CONFIG;
+export function auth0Factory(): AuthLoader {
+  return new Auth0StaticLoader(environment.AUTH_CONFIG);
+}
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,6 +40,10 @@ import { AppRoutingModule } from './app-routing.module';
     ShellModule,
     HomeModule,
     LoginModule,
+    Auth0Module.forRoot({
+      provide: AuthLoader,
+      useFactory: (auth0Factory)
+    }),
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
