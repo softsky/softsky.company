@@ -13,12 +13,21 @@ export const environment = {
   supportedLanguages: [
     'en-US',
     'fr-FR'
-  ]
+  ],
+  AUTH_CONFIG : {
+    backend: {
+      clientID: 'FIhO7vNId2Al1wdfKJDhBuY4NwGZLB5i',
+      domain: 'softsky.eu.auth0.com',
+      redirectUri: 'http://localhost:3000/callback',
+      scope: 'openid',
+      responseType: 'token id_token'
+    },
+    storage: localStorage,
+    storageKey: 'currentUser',
+    publicRoute: ['public'],
+    defaultUrl: ''
+  }
 };
-
-export const AUTH_CONFIG = {
-
-}
 
 /*
  * For easier debugging in development mode, you can import the following file
