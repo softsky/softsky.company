@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observer, Observable, Subscriber, of } from 'rxjs';
+
+import { environment } from '@env/environment';
+import { Logger } from '../logger.service';
+import * as auth0 from 'auth0-js';
 
 export interface Credentials {
   // Customize received credentials here
@@ -14,6 +18,7 @@ export interface LoginContext {
 }
 
 const credentialsKey = 'credentials';
+const log = new Logger('AuthenticationService');
 
 /**
  * Provides a base for authentication workflow.
@@ -22,8 +27,11 @@ const credentialsKey = 'credentials';
 @Injectable()
 export class AuthenticationService {
   private _credentials: Credentials | null;
+  readonly auth0: auth0.WebAuth;
 
   constructor() {
+    this.auth0 = new auth0.WebAuth(environment.AUTH_CONFIG.backend);
+
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
@@ -38,11 +46,30 @@ export class AuthenticationService {
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
     const data = {
+      grant_type: 'password',
+      audience: 'https://softsky.eu.auth0.com/userinfo',
+      client_id: 'FIhO7vNId2Al1wdfKJDhBuY4NwGZLB5i',
+      client_secret: 'dgbhEDLX5qRrZ5VVLS-oZ4Y1lfSnKI8rc9-j7NtuOowIEFZ9QsFERZYFGMcu2i2h',
+      connection: 'Username-Password-Authentication',
+      scope: 'openid',
       username: context.username,
-      token: '123456'
+      password: context.password
     };
-    this.setCredentials(data, context.remember);
-    return of(data);
+    const observer = (subscriber: Subscriber<Credentials>) => {
+      this.auth0.popup.loginWithCredentials(data, (err: any, result: Credentials) => {
+        log.debug('parameters', err, result);
+        if (err) subscriber.error(err);
+        else {
+          log.info('Succesfully logged in:', result);
+          this.setCredentials(result, context.remember);
+          subscriber.next(result);
+        }
+      });
+    };
+
+    let o: Observable<Credentials> = new Observable<Credentials>(observer);
+    //o.subscribe((c: Credentials) => log.info(c));
+    return o;
   }
 
   /**
