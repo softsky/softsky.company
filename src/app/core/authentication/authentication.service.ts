@@ -51,6 +51,16 @@ export class AuthenticationService {
       connection: 'Username-Password-Authentication',
       username: context.username,
       password: context.password
+
+      //FIXME fix typing here
+      // /** url that the Auth0 will redirect after Auth with the Authorization Response */
+      // redirectUri: "",
+      // /** type of the response used. It can be any of the values `code` and `token` */
+      // responseType: "",
+      // /** how the AuthN response is encoded and redirected back to the client. */
+      // responseMode: "",
+      // /** scopes to be requested during AuthN. e.g. `openid email` */
+      // scope: "",
     };
 
     const observer = (subscriber: Subscriber<Credentials>) => {
