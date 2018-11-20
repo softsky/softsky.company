@@ -2,22 +2,29 @@
   <mat-card>
     <p><img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" /></p>
     <mat-card-content>
-      <mat-card-title translate>Hello world !</mat-card-title>
-      <mat-card-subtitle>
-        <app-loader [isLoading]="isLoading" size="1.5"></app-loader>
-        <q [hidden]="isLoading">{{ quote }}</q>
-      </mat-card-subtitle>
-      <mat-card-actions>
-        <button
-          mat-raised-button
-          angulartics2On="click"
-          angularticsAction="Click button below quote"
-          (click)="handleMainClick($event)"
-          [angularticsCategory]="queue"
-        >
-          Click me to send an Analytics event
-        </button>
-      </mat-card-actions>
+      <form class="form" name="emailForm" (ngForm)="(email)">
+        <mat-card-title translate>Enter your email address:</mat-card-title>
+        <mat-form-field class="full-width" hintLabel="Note: We'll generate breached report for that email">
+          <input matInput placeholder="Email" [formControl]="email" required />
+          <mat-error *ngIf="email.invalid" translate>Enter valid email address!</mat-error>
+        </mat-form-field>
+        <mat-card-subtitle>
+          <app-loader [isLoading]="isLoading" size="1.5"></app-loader>
+          <p [hidden]="isLoading">{{ report }}</p>
+        </mat-card-subtitle>
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            angulartics2On="click"
+            angularticsAction="Click button below quote"
+            (click)="handleMainClick($event)"
+            [disabled]="email.invalid"
+            [angularticsCategory]="queue"
+          >
+            Click me to send an Analytics event
+          </button>
+        </mat-card-actions>
+      </form>
     </mat-card-content>
   </mat-card>
 </div>

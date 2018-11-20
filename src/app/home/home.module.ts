@@ -4,6 +4,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Angulartics2Module } from 'angulartics2';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
@@ -20,6 +22,8 @@ import { QueueService } from './queue.service';
     FlexLayoutModule,
     MaterialModule,
     Angulartics2Module,
+    FormsModule,
+    ReactiveFormsModule,
     HomeRoutingModule
   ],
   declarations: [HomeComponent],

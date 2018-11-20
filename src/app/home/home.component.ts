@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { QueueService } from './queue.service';
 import { Logger } from '@app/core';
 
+import { FormControl, Validators } from '@angular/forms';
 const log = new Logger('Home');
 
 @Component({
@@ -15,13 +16,17 @@ const log = new Logger('Home');
 export class HomeComponent implements OnInit {
   quote: string;
   isLoading: boolean;
+  email;
+  report: string;
 
   constructor(private queueService: QueueService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.isLoading = true;
     this.isLoading = false;
-    this.route.fragment.subscribe((fragment: string) => {});
+    this.email = new FormControl('', [Validators.required, Validators.email]);
+    this.route.fragment.subscribe((fragment: string) => {
+      this.email.value = fragment;
+    });
   }
 
   handleMainClick(e: any) {
