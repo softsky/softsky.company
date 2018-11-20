@@ -7,6 +7,7 @@
         <mat-form-field class="full-width" hintLabel="Note: We'll generate breached report for that email">
           <input matInput placeholder="Email" [formControl]="email" required />
           <mat-error *ngIf="email.invalid" translate>Enter valid email address!</mat-error>
+          <!-- TODO fix matError -->
         </mat-form-field>
         <mat-card-subtitle>
           <app-loader [isLoading]="isLoading" size="1.5"></app-loader>
