@@ -48,36 +48,36 @@ export class AuthenticationService {
     const data = {
       grant_type: 'password',
       audience: 'https://softsky.eu.auth0.com/userinfo',
-      client_id: 'FIhO7vNId2Al1wdfKJDhBuY4NwGZLB5i',
-      client_secret: 'dgbhEDLX5qRrZ5VVLS-oZ4Y1lfSnKI8rc9-j7NtuOowIEFZ9QsFERZYFGMcu2i2h',
       connection: 'Username-Password-Authentication',
-      scope: 'openid',
       username: context.username,
       password: context.password
     };
+
     const observer = (subscriber: Subscriber<Credentials>) => {
       this.auth0.popup.loginWithCredentials(data, (err: any, result: Credentials) => {
         log.debug('parameters', err, result);
         if (err) subscriber.error(err);
         else {
           log.info('Succesfully logged in:', result);
+          result.username = data.username; // saving username
           this.setCredentials(result, context.remember);
           subscriber.next(result);
         }
       });
     };
 
-    let o: Observable<Credentials> = new Observable<Credentials>(observer);
-    //o.subscribe((c: Credentials) => log.info(c));
-    return o;
+    return new Observable<Credentials>(observer);
   }
-
   /**
    * Logs out the user and clear credentials.
    * @return True if the user was logged out successfully.
    */
   logout(): Observable<boolean> {
     // Customize credentials invalidation here
+    this.auth0.logout({
+      clientID: environment.AUTH_CONFIG.backend.clientID,
+      returnTo: 'http://localhost:4200/home'
+    });
     this.setCredentials();
     return of(true);
   }
