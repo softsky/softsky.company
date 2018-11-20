@@ -2,7 +2,7 @@
   "generator-ngx-rocket": {
     "version": "5.3.0",
     "props": {
-      "appName": "avalanche global",
+      "appName": "avalache global",
       "target": ["web"],
       "pwa": true,
       "ui": "material",
@@ -13,7 +13,7 @@
       "analyticsProvider": "ga",
       "googleAnalyticsAccount": "UA-129309010-1",
       "prettier": true,
-      "projectName": "avalanche-global",
+      "projectName": "avalache-global",
       "packageManager": "npm",
       "mobile": []
     }
