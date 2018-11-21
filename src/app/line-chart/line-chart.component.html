@@ -1,0 +1,24 @@
+<div style="display:inline-block">
+  <div style="display: block;">
+    <canvas
+      baseChart
+      [style.width.px]="width"
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="lineChartColors"
+      [legend]="lineChartLegend"
+      [chartType]="lineChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    ></canvas>
+  </div>
+  <table class="table table-responsive table-condensed" [hidden]="true">
+    <tr>
+      <th *ngFor="let label of lineChartLabels">{{ label }}</th>
+    </tr>
+    <tr *ngFor="let d of lineChartData">
+      <td *ngFor="let label of lineChartLabels; let j = index">{{ d && d.data[j] }}</td>
+    </tr>
+  </table>
+</div>
