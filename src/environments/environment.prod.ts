@@ -6,5 +6,19 @@ export const environment = {
   version: env.npm_package_version,
   serverUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
-  supportedLanguages: ['en-US', 'fr-FR']
+  supportedLanguages: ['en-US', 'uk-UA'],
+
+  AUTH_CONFIG: {
+    backend: {
+      clientID: 'FIhO7vNId2Al1wdfKJDhBuY4NwGZLB5i',
+      domain: 'softsky.eu.auth0.com',
+      redirectUri: 'http://localhost:4200/auth-callback',
+      scope: 'openid',
+      responseType: 'token id_token'
+    },
+    storage: localStorage,
+    storageKey: 'currentUser',
+    publicRoute: ['public'],
+    defaultUrl: ''
+  }
 };

@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
     // https://haveibeenpwned.com/api/v2/breaches
   }
 
-  initChart(event: LineChartComponent) {
+  initChart() {
     if (['', null, undefined].indexOf(this.emailForm.controls.email.value) > -1) return; // leaving if value is empty
     const o = this.http
       .get('https://haveibeenpwned.com/api/v2/breachedaccount/' + this.emailForm.controls.email.value)
@@ -160,18 +160,12 @@ export class HomeComponent implements OnInit {
         if (msg.ReceiveMessageResponse && msg.ReceiveMessageResponse.ReceiveMessageResult) {
           const a = document.createElement('a');
 
-          a.appendChild(document.createTextNode('Click to send first email'));
-          a.href = msg.ReceiveMessageResponse.ReceiveMessageResult.messages[0].Body;
-          a.target = '_new';
-          a.click();
-          //e.target.parentElement.parentElement.appendChild(a);
-          // var evt = document.createEvent('MouseEvents');
-          // evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-          // a.dispatchEvent(evt);
-          // you can check allowDefault for false to see if
-          // any handler called evt.preventDefault().
-          // Firefox will *not* redirect to anchorObj.href
-          // for you. However every other browser will.
+          this.translate.get('Click to send the email').subscribe(clickHereText => {
+            a.appendChild(document.createTextNode(clickHereText));
+            a.href = msg.ReceiveMessageResponse.ReceiveMessageResult.messages[0].Body;
+            a.target = '_new';
+            a.click();
+          });
         } else {
           this.translate.get('Lookes like all emails are sent').subscribe((res: string) => {
             window.alert(res);

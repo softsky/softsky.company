@@ -14,13 +14,13 @@
   </form>
 
   <p>
-    <button class="open-next" color="primary" (click)="initChart()" mat-raised-button mat-primary translate>
-      Check breaches
+    <button class="open-next" color="primary" (click)="initChart()" mat-raised-button mat-primary>
+      {{ 'Check breaches' | translate }}
     </button>
   </p>
   <mat-card-content>
     <mat-accordion>
-      <mat-expansion-panel [disabled]="state < 1" [expanded]="state === 1" (afterExpand)="animateButton($event)">
+      <mat-expansion-panel [disabled]="state < 1" [expanded]="state === 1" (afterExpand)="animateButton()">
         <mat-expansion-panel-header>
           <mat-panel-title translate>
             <i class="material-icons md-icon-32"> looks_one </i> Check results
@@ -46,15 +46,17 @@
             <!-- <h5 translate> -->
             <!-- This is how information been leaked in time: -->
             <!-- </h5> -->
-            <app-line-chart (onInitialized)="initChart($event)"></app-line-chart>
+            <app-line-chart (onInitialized)="initChart()"></app-line-chart>
           </mat-card-content>
         </mat-card>
         <mat-action-row>
-          <button class="open-next" color="primary" matButton mat-raised-button mat-primary scrollTo>Fix that</button>
+          <button class="open-next" color="primary" matButton mat-raised-button mat-primary scrollTo>
+            {{ 'Fix that!' | translate }}
+          </button>
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel [disabled]="state < 2" [expanded]="state === 2" (afterExpand)="animateButton($event)">
+      <mat-expansion-panel [disabled]="state < 2" [expanded]="state === 2" (afterExpand)="animateButton()">
         <mat-expansion-panel-header>
           <mat-panel-title translate>
             <i class="material-icons md-icon-32"> looks_two </i> Account invalidation
@@ -84,9 +86,8 @@
             [disabled]="emailForm.controls.email.invalid"
             [angularticsCategory]="'queue'"
             mat-raised-button
-            translate
           >
-            Notify accounts affected
+            {{ 'Notify accounts affected' | translate }}
           </button>
         </mat-action-row>
       </mat-expansion-panel>
@@ -142,7 +143,7 @@
           </form>
         </mat-panel-description>
         <mat-action-row>
-          <button class="open-next" color="primary" mat-raised-button translate>Finish</button>
+          <button class="open-next" color="primary" mat-raised-button>{{ 'Finish' | translate }}</button>
         </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
