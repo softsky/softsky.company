@@ -13,7 +13,7 @@
     <p [hidden]="isLoading">{{ report }}</p>
   </form>
 
-  <p><button class="open-next" (click)="initChart()" mat-raised-button translate>Check breaches</button></p>
+  <p><button class="open-next" (click)="initChart()" mat-raised-button mat-primary translate>Check breaches</button></p>
   <mat-card-content>
     <mat-accordion>
       <mat-expansion-panel [disabled]="state < 1" [expanded]="state === 1">
@@ -24,10 +24,18 @@
         </mat-expansion-panel-header>
         <mat-panel-description>
           <i class="material-icons md-icon-48"> important_devices </i>
-          <p translate [hidden]="breachedCount === 0">
-            ATTENTION! Your account information has been leaked <b>{{ breachedCount }}</b> times!
-          </p>
-          <h3 translate [hidden]="breachedCount > 0">Congratulations, your account information has not leaked yet</h3>
+          <span [hidden]="breachedCount === 0">
+            <h3 translate>
+              ATTENTION! Your account information has been leaked <b>{{ breachedCount }}</b> times!
+            </h3>
+            <p translate>We would suggest yout o go to the next step and fix that issue</p>
+          </span>
+          <span [hidden]="breachedCount > 0">
+            <h3 translate>Congratulations, your account information has not leaked yet</h3>
+            <p translate>
+              Anyway, we would suggest yout o go to the next step and and protect yourself from future leaks
+            </p>
+          </span>
         </mat-panel-description>
         <mat-card>
           <mat-card-content>
@@ -37,7 +45,7 @@
             <app-line-chart (onInitialized)="initChart($event)"></app-line-chart>
           </mat-card-content>
         </mat-card>
-        <mat-action-row> <button class="open-next" mat-raised-button>Fix that</button> </mat-action-row>
+        <mat-action-row> <button class="open-next" mat-raised-button mat-primary>Fix that</button> </mat-action-row>
       </mat-expansion-panel>
 
       <mat-expansion-panel [disabled]="state < 2" [expanded]="state === 2">
@@ -67,7 +75,7 @@
             angularticsAction="Click button below quote"
             (click)="handleMainClick($event)"
             [disabled]="emailForm.controls.email.invalid"
-            [angularticsCategory]="queue"
+            [angularticsCategory]="'queue'"
             mat-raised-button
             translate
           >
@@ -83,12 +91,8 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-panel-description>
-          <!-- <p> -->
-          <!-- <i class="material-icons md-icon-48"> -->
-          <!-- done_outline -->
-          <!-- </i> -->
-          <!-- </p> -->
-          <form method="POST" action="https://api.privatbank.ua/p24api/ishop">
+          <p><i class="material-icons md-icon-48"> done_outline </i></p>
+          <form method="POST" action="https://api.privatbank.ua/p24api/ishop" target="_blank" ngNoForm>
             <input type="hidden" name="amt" value="249" /> <input type="hidden" name="ccy" value="UAH" />
             <input type="hidden" name="merchant" value="139847" /> <input type="hidden" name="order" value="AC-LITE" />
             <input
@@ -104,7 +108,8 @@
             <input type="hidden" name="return_url" value="https://avalache.github.io/home#done" />
             <input type="hidden" name="server_url" value="https://avalache.github.io/thank-you" />
             <input type="hidden" name="pay_way" value="privat24" />
-            <button mat-raised-button matSubmit translate>
+
+            <button type="submit" mat-raised-button translate>
               <mat-icon>
                 <svg class="svg_p24_green" viewBox="0 0 36 36">
                   <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -129,7 +134,7 @@
             </button>
           </form>
         </mat-panel-description>
-        <mat-action-row> <button class="open-next" mat-button>Finish</button> </mat-action-row>
+        <mat-action-row> <button class="open-next" mat-raised-button translate>Finish</button> </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>
