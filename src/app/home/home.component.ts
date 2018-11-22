@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Directive, OnInit, ViewChild } from '@angular/core';
 import { Observable, fromEvent, of, from, throwError } from 'rxjs';
 import { map, scan, reduce, catchError } from 'rxjs/operators';
 
@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(LineChartComponent) chart: LineChartComponent;
 
+  private isVisible: boolean = false;
+
   constructor(
     private queueService: QueueService,
     private route: ActivatedRoute,
@@ -51,9 +53,11 @@ export class HomeComponent implements OnInit {
     });
 
     document.querySelectorAll('button.open-next').forEach((e, idx) =>
-      fromEvent(e, 'click')
-        .pipe(map(it => (this.state = idx + 1)))
-        .subscribe(it => log.debug('Debug', this.state))
+      fromEvent(e, 'click').subscribe(it => {
+        //it.target.nativeComponent.scrollIntoView();
+        this.state = idx + 1;
+        log.debug('Debug', this.state);
+      })
     );
     // fetch data
     // https://haveibeenpwned.com/api/v2/breaches
@@ -78,7 +82,7 @@ export class HomeComponent implements OnInit {
             // The response body may contain clues as to what went wrong,
             console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
           } // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
+          return throwError(`Looks like ${this.emailForm.controls.email.value} account is not breached`);
         })
       );
 
@@ -128,6 +132,11 @@ export class HomeComponent implements OnInit {
     });
 
     // Draw chart
+  }
+
+  animateButton() {
+    // TODO this is like workaround, fix it to be more ng-like
+    document.querySelector('.mat-expanded button').scrollIntoView();
   }
 
   handleMainClick(e: any) {

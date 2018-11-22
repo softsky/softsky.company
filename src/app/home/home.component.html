@@ -16,7 +16,7 @@
   <p><button class="open-next" (click)="initChart()" mat-raised-button mat-primary translate>Check breaches</button></p>
   <mat-card-content>
     <mat-accordion>
-      <mat-expansion-panel [disabled]="state < 1" [expanded]="state === 1">
+      <mat-expansion-panel [disabled]="state < 1" [expanded]="state === 1" (afterExpand)="animateButton($event)">
         <mat-expansion-panel-header>
           <mat-panel-title translate>
             <i class="material-icons md-icon-32"> looks_one </i> Check results
@@ -28,12 +28,12 @@
             <h3 translate>
               ATTENTION! Your account information has been leaked <b>{{ breachedCount }}</b> times!
             </h3>
-            <p translate>We would suggest yout o go to the next step and fix that issue</p>
+            <p translate>We would suggest yout to go to the next step and fix that issue</p>
           </span>
           <span [hidden]="breachedCount > 0">
             <h3 translate>Congratulations, your account information has not leaked yet</h3>
             <p translate>
-              Anyway, we would suggest yout o go to the next step and and protect yourself from future leaks
+              Anyway, we would suggest yout to go to the next step and and protect yourself from future leaks
             </p>
           </span>
         </mat-panel-description>
@@ -45,10 +45,12 @@
             <app-line-chart (onInitialized)="initChart($event)"></app-line-chart>
           </mat-card-content>
         </mat-card>
-        <mat-action-row> <button class="open-next" mat-raised-button mat-primary>Fix that</button> </mat-action-row>
+        <mat-action-row>
+          <button class="open-next" matButton mat-raised-button mat-primary scrollTo>Fix that</button>
+        </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel [disabled]="state < 2" [expanded]="state === 2">
+      <mat-expansion-panel [disabled]="state < 2" [expanded]="state === 2" (afterExpand)="animateButton($event)">
         <mat-expansion-panel-header>
           <mat-panel-title translate>
             <i class="material-icons md-icon-32"> looks_two </i> Account invalidation
@@ -84,7 +86,7 @@
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel [disabled]="state < 3" [expanded]="state === 3">
+      <mat-expansion-panel [disabled]="state < 3" [expanded]="state === 3" (afterExpand)="animateButton()">
         <mat-expansion-panel-header>
           <mat-panel-title translate>
             <i class="material-icons md-icon-32"> looks_3 </i> Choose your plan
