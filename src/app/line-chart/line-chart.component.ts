@@ -6,6 +6,13 @@ import { BaseChartDirective } from 'ng2-charts';
 import * as moment from 'moment';
 const log = new Logger('Home');
 
+export const EMPTY_DATA = [
+  { data: [0, 0, 0, 0, 0, 0, 0], label: 'Breached' },
+  { data: [0, 0, 0, 0, 0, 0, 0], label: 'Researched' }
+];
+
+export const EMPTY_LABELS = [2012, 2013, 2014, 2015, 2016, 2017, 2018];
+
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
@@ -15,15 +22,11 @@ const log = new Logger('Home');
 export class LineChartComponent implements OnInit {
   @ViewChild(BaseChartDirective) baseChart: BaseChartDirective;
 
-  private width: number;
   private onInitialized = new EventEmitter<LineChartComponent>();
 
   // lineChart
-  public lineChartData: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-  ];
-  public lineChartLabels: Array<any> = [1, 2, 3, , 4, 5, 6, 7];
+  public lineChartData: Array<any> = EMPTY_DATA;
+  public lineChartLabels: Array<any> = EMPTY_LABELS;
   public lineChartOptions: any = {
     responsive: true
   };
@@ -52,7 +55,6 @@ export class LineChartComponent implements OnInit {
 
   ngOnInit() {
     this.onInitialized.emit(this);
-    this.onResize(null); // initial set size
   }
 
   public lineChartLegend: boolean = true;
@@ -65,11 +67,5 @@ export class LineChartComponent implements OnInit {
 
   public chartHovered(e: any): void {
     console.log(e);
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.width = window.innerWidth * 0.9;
-    log.debug('Setting size', this.width);
   }
 }
