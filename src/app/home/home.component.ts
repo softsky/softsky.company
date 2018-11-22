@@ -9,6 +9,8 @@ import { QueueService } from './queue.service';
 import { HttpClient } from '@angular/common/http';
 import { Logger } from '@app/core';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EMPTY_LABELS, EMPTY_DATA, LineChartComponent } from '../line-chart/line-chart.component';
 
@@ -36,10 +38,11 @@ export class HomeComponent implements OnInit {
   private isVisible: boolean = false;
 
   constructor(
-    private queueService: QueueService,
-    private route: ActivatedRoute,
     private http: HttpClient,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private queueService: QueueService,
+    private translate: TranslateService
   ) {
     this.emailForm = fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -118,17 +121,19 @@ export class HomeComponent implements OnInit {
           return 0;
         });
 
-      this.chart.lineChartData = [
-        { data: breachedByDate.map(it => it.size), label: 'Breached' },
-        { data: researchedByDate.map(it => it.size), label: 'Researched' }
-      ];
-      this.chart.lineChartLabels = breachedByDate.map(it => moment(it.date).format('MM/YYYY'));
-      this.breachedCount = breachedByDate.length;
+      this.translate.get(['Breached', 'Researched']).subscribe((values: any) => {
+        this.chart.lineChartData = [
+          { data: breachedByDate.map(it => it.size), label: values.Breached },
+          { data: researchedByDate.map(it => it.size), label: values.Researched }
+        ];
+        this.chart.lineChartLabels = breachedByDate.map(it => moment(it.date).format('MM/YYYY'));
+        this.breachedCount = breachedByDate.length;
 
-      if (this.chart && this.chart.baseChart && this.chart.baseChart.chart && this.chart.baseChart.chart.config) {
-        this.chart.baseChart.chart.config.data.labels = this.chart.lineChartLabels;
-        this.chart.baseChart.chart.update();
-      }
+        if (this.chart && this.chart.baseChart && this.chart.baseChart.chart && this.chart.baseChart.chart.config) {
+          this.chart.baseChart.chart.config.data.labels = this.chart.lineChartLabels;
+          this.chart.baseChart.chart.update();
+        }
+      });
     });
 
     // Draw chart
@@ -168,7 +173,9 @@ export class HomeComponent implements OnInit {
           // Firefox will *not* redirect to anchorObj.href
           // for you. However every other browser will.
         } else {
-          window.alert('Sorry, no more emails are available to sent yet');
+          this.translate.get('Lookes like all emails are sent').subscribe((res: string) => {
+            window.alert(res);
+          });
         }
       });
   }
