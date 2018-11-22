@@ -4,6 +4,7 @@ import { Observer, Observable, Subscriber, of } from 'rxjs';
 import { environment } from '@env/environment';
 import { Logger } from '../logger.service';
 import * as auth0 from 'auth0-js';
+import * as _ from 'lodash';
 
 export interface Credentials {
   // Customize received credentials here
@@ -45,7 +46,7 @@ export class AuthenticationService {
    */
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
-    const data = {
+    const data: any = {
       grant_type: 'password',
       audience: 'https://softsky.eu.auth0.com/userinfo',
       connection: 'Username-Password-Authentication',
@@ -53,27 +54,31 @@ export class AuthenticationService {
       password: context.password
 
       //FIXME fix typing here
-      // /** url that the Auth0 will redirect after Auth with the Authorization Response */
-      // redirectUri: "",
-      // /** type of the response used. It can be any of the values `code` and `token` */
-      // responseType: "",
-      // /** how the AuthN response is encoded and redirected back to the client. */
-      // responseMode: "",
-      // /** scopes to be requested during AuthN. e.g. `openid email` */
-      // scope: "",
+      // // Code below was added to prevent typing compilation error
+      // // /** url that the Auth0 will redirect after Auth with the Authorization Response */
+      //  redirectUri: "",
+      // // /** type of the response used. It can be any of the values `code` and `token` */
+      //  responseType: "",
+      // // /** how the AuthN response is encoded and redirected back to the client. */
+      //  responseMode: "",
+      // // /** scopes to be requested during AuthN. e.g. `openid email` */
+      //  scope: "",
     };
 
     const observer = (subscriber: Subscriber<Credentials>) => {
-      this.auth0.popup.loginWithCredentials(data, (err: any, result: Credentials) => {
-        log.debug('parameters', err, result);
-        if (err) subscriber.error(err);
-        else {
-          log.info('Succesfully logged in:', result);
-          result.username = data.username; // saving username
-          this.setCredentials(result, context.remember);
-          subscriber.next(result);
+      this.auth0.popup.loginWithCredentials(
+        _.merge(environment.AUTH_CONFIG.backend, data) /* using that way to prevent from typing error */,
+        (err: any, result: Credentials) => {
+          log.debug('parameters', err, result);
+          if (err) subscriber.error(err);
+          else {
+            log.info('Succesfully logged in:', result);
+            result.username = data.username; // saving username
+            this.setCredentials(result, context.remember);
+            subscriber.next(result);
+          }
         }
-      });
+      );
     };
 
     return new Observable<Credentials>(observer);
