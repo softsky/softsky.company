@@ -58,7 +58,7 @@ export class LineChartComponent implements OnInit {
   }
 
   public lineChartLegend: boolean = true;
-  public lineChartType: string = 'bar';
+  public lineChartType: string = 'radar';
 
   // events
   public chartClicked(e: any): void {
