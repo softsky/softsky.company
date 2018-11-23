@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   emailForm: FormGroup;
   report: string;
   state: number = 0;
+  cbTOS: boolean = false;
   breachedSites: Array<any> = [];
   breachedCount: number = 0;
 

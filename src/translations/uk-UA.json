@@ -1,6 +1,7 @@
 {
   "APP_NAME": "СОФТСКАЙ Інтернет Сефеті",
   "ATTENTION! Your account information has been leaked": "УВАГА! Ваші дані 'витекли' ",
+  "Note: We''ll generate breached report for that email": "Ми згенеруємо звіт по Вашому е-мейлу",
   "About": "Про",
   "Account invalidation": "Скидання паролів",
   "Anyway, we would suggest yout to go to the next step and and protect yourself from future leaks": "Ми радили б вам перейти до наступного кроку, щоб захистити себе на майбутнє",
@@ -32,5 +33,7 @@
   "Why I'm here": "Чому я тут",
   "You are here due to": "Напевне Вас повідомили, що адреса Вашої електронної пошти та пароль 'витекли' з кражею даних користувачів на одному з інтернет ресурсів. За допомогою нашого сервісу Ви можете перевірити цю інформацію, а також захистити себе в майбутньому від всякого роду зламів та витоку Ваших даних.",
   "times!": "разів!",
-  "Fix that!": "Виправити!"
+  "Fix that!": "Виправити!",
+  "Agree to": "Погодитись з",
+  "Terms of Service": "Умовами використання"
 }
