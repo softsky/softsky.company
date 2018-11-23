@@ -8844,28 +8844,30 @@
                 n = {
                   grant_type: 'password',
                   audience: 'https://softsky.eu.auth0.com/userinfo',
-                  connection: 'Username-Password-Authentication',
+                  realm: 'Username-Password-Authentication',
+                  default_directory: 'Username-Password-Authentication',
                   username: t.username,
                   password: t.password
-                };
-              return new i.a(function(i) {
-                e.auth0.popup.loginWithCredentials(se.merge(o.a.AUTH_CONFIG.backend, n), function(r, o) {
-                  ue.debug('parameters', r, o),
-                    r
-                      ? i.error(r)
-                      : (ue.info('Succesfully logged in:', o),
-                        (o.username = n.username),
-                        e.setCredentials(o, t.remember),
-                        i.next(o));
-                });
-              });
+                },
+                r = se.merge(o.a.AUTH_CONFIG.backend, n);
+              return (
+                ue.debug('logging in with record:', r),
+                new i.a(function(i) {
+                  e.auth0.popup.loginWithCredentials(r, function(r, o) {
+                    ue.debug('parameters', r, o),
+                      r
+                        ? i.error(r)
+                        : (ue.info('Succesfully logged in:', o),
+                          (o.username = n.username),
+                          e.setCredentials(o, t.remember),
+                          i.next(o));
+                  });
+                })
+              );
             }),
             (t.prototype.logout = function() {
               return (
-                this.auth0.logout({
-                  clientID: o.a.AUTH_CONFIG.backend.clientID,
-                  returnTo: 'http://localhost:4200/home'
-                }),
+                this.auth0.logout({ clientID: o.a.AUTH_CONFIG.backend.clientID, returnTo: o.a.AUTH_CONFIG.defaultUrl }),
                 this.setCredentials(),
                 Object(r.a)(!0)
               );
@@ -12029,16 +12031,16 @@
         supportedLanguages: ['en-US', 'uk-UA'],
         AUTH_CONFIG: {
           backend: {
-            clientID: 'FIhO7vNId2Al1wdfKJDhBuY4NwGZLB5i',
+            clientID: '8Vxwltha1La3uqXooU0FsIqRFeSG1Bxr',
             domain: 'softsky.eu.auth0.com',
-            redirectUri: 'http://localhost:4200/auth-callback',
+            redirectUri: 'http://softsky.company/auth-callback',
             scope: 'openid',
             responseType: 'token id_token'
           },
           storage: localStorage,
           storageKey: 'currentUser',
           publicRoute: ['public'],
-          defaultUrl: ''
+          defaultUrl: 'https://softsky.company/'
         }
       };
     },
@@ -77485,7 +77487,7 @@
               null,
               2,
               'a',
-              [['class', 'brand'], ['href', 'https://github.com/ngx-rocket'], ['translate', '']],
+              [['class', 'brand'], ['href', 'https://softsky.company'], ['translate', '']],
               null,
               null,
               null,
@@ -80553,7 +80555,7 @@
                 ['alt', 'angular logo'],
                 ['class', 'logo left mat-card-image'],
                 ['mat-card-image', ''],
-                ['src', 'assets/ngx-rocket-logo.png']
+                ['src', 'assets/logo.png']
               ],
               null,
               null,
@@ -82651,7 +82653,7 @@
                     function(e) {
                       $e.debug(e.username + ' successfully logged in'),
                         t.route.queryParams.subscribe(function(e) {
-                          return t.router.navigate([e.redirect || '/'], { replaceUrl: !0 });
+                          return t.router.navigate([e.redirect || '/home'], { replaceUrl: !0 });
                         });
                     },
                     function(e) {
@@ -83766,15 +83768,56 @@
       }
       var ln = i['\u0275ccf']('app-login', tn, sn, {}, {}, []),
         un = (function() {
+          function t(t) {
+            this.route = t;
+          }
+          return (
+            (t.prototype.ngOnInit = function() {
+              var t = this;
+              this.route.fragment.subscribe(function(e) {
+                t.fragment = e;
+              });
+            }),
+            t
+          );
+        })(),
+        cn = i['\u0275crt']({ encapsulation: 0, styles: [['']], data: {} });
+      function dn(t) {
+        return i['\u0275vid'](
+          0,
+          [
+            (t()(), i['\u0275eld'](0, 0, null, null, 1, 'p', [], null, null, null, null, null)),
+            (t()(), i['\u0275ted'](-1, null, ['\n  auth-callback works!\n'])),
+            (t()(), i['\u0275ted'](-1, null, ['\n']))
+          ],
+          null,
+          null
+        );
+      }
+      function hn(t) {
+        return i['\u0275vid'](
+          0,
+          [
+            (t()(), i['\u0275eld'](0, 0, null, null, 1, 'app-auth-callback', [], null, null, null, dn, cn)),
+            i['\u0275did'](1, 114688, null, 0, un, [a.a], null, null)
+          ],
+          function(t, e) {
+            t(e, 1, 0);
+          },
+          null
+        );
+      }
+      var pn = i['\u0275ccf']('app-auth-callback', un, hn, {}, {}, []),
+        fn = (function() {
           return function() {
             (this.additionalAccountNames = []), (this.userId = null), (this.transport = ''), (this.anonymizeIp = !1);
           };
         })(),
-        cn = (function() {
+        mn = (function() {
           function t(t) {
             var e = this;
             (this.angulartics2 = t), (this.dimensionsAndMetrics = []);
-            var n = new un();
+            var n = new fn();
             (this.angulartics2.settings.ga = Object(ke.__assign)({}, n, this.angulartics2.settings.ga)),
               this.angulartics2.pageTrack.pipe(this.angulartics2.filterDeveloperMode()).subscribe(function(t) {
                 return e.pageTrack(t.path);
@@ -83995,8 +84038,8 @@
             t
           );
         })(),
-        dn = i['\u0275crt']({ encapsulation: 0, styles: [['[_nghost-%COMP%]{display:flex;flex:1}']], data: {} });
-      function hn(t) {
+        _n = i['\u0275crt']({ encapsulation: 0, styles: [['[_nghost-%COMP%]{display:flex;flex:1}']], data: {} });
+      function gn(t) {
         return i['\u0275vid'](
           0,
           [
@@ -84019,12 +84062,12 @@
           null
         );
       }
-      function pn(t) {
+      function yn(t) {
         return i['\u0275vid'](
           0,
           [
-            (t()(), i['\u0275eld'](0, 0, null, null, 1, 'app-root', [], null, null, null, hn, dn)),
-            i['\u0275did'](1, 114688, null, 0, p, [a.l, a.a, C.i, tt.l, cn, yt.a], null, null)
+            (t()(), i['\u0275eld'](0, 0, null, null, 1, 'app-root', [], null, null, null, gn, _n)),
+            i['\u0275did'](1, 114688, null, 0, p, [a.l, a.a, C.i, tt.l, mn, yt.a], null, null)
           ],
           function(t, e) {
             t(e, 1, 0);
@@ -84032,20 +84075,20 @@
           null
         );
       }
-      var fn = i['\u0275ccf']('app-root', p, pn, {}, {}, []),
-        mn = n('NSYL'),
-        _n = n('lYZG'),
-        gn = n('dEwP'),
-        yn = n('K9Ia'),
-        vn = n('6blF'),
-        bn = n('+umK'),
-        wn = new vn.a(bn.a),
-        xn = n('15JJ'),
-        kn = n('xlPZ'),
-        Mn = n('t9fZ'),
-        Cn = n('xMyE'),
-        Sn = 'Service workers are disabled or not supported by this browser',
-        Dn = (function() {
+      var vn = i['\u0275ccf']('app-root', p, yn, {}, {}, []),
+        bn = n('NSYL'),
+        wn = n('lYZG'),
+        xn = n('dEwP'),
+        kn = n('K9Ia'),
+        Mn = n('6blF'),
+        Cn = n('+umK'),
+        Sn = new Mn.a(Cn.a),
+        Dn = n('15JJ'),
+        On = n('xlPZ'),
+        Ln = n('t9fZ'),
+        Tn = n('xMyE'),
+        En = 'Service workers are disabled or not supported by this browser',
+        jn = (function() {
           function t(t) {
             if (((this.serviceWorker = t), t)) {
               var e = Object(Ae.a)(t, 'controllerchange').pipe(
@@ -84053,17 +84096,17 @@
                     return t.controller;
                   })
                 ),
-                n = Object(_n.a)(function() {
+                n = Object(wn.a)(function() {
                   return Object(Ye.a)(t.controller);
                 }),
-                i = Object(gn.a)(n, e);
+                i = Object(xn.a)(n, e);
               (this.worker = i.pipe(
                 Object(l.a)(function(t) {
                   return !!t;
                 })
               )),
                 (this.registration = this.worker.pipe(
-                  Object(xn.a)(function() {
+                  Object(Dn.a)(function() {
                     return t.getRegistration();
                   })
                 ));
@@ -84078,11 +84121,11 @@
                     return t && t.type;
                   })
                 )
-                .pipe(Object(kn.a)(new yn.a()));
+                .pipe(Object(On.a)(new kn.a()));
               r.connect(), (this.events = r);
             } else
-              this.worker = this.events = this.registration = ((o = Sn),
-              Object(_n.a)(function() {
+              this.worker = this.events = this.registration = ((o = En),
+              Object(wn.a)(function() {
                 return Object(Ie.a)(new Error(o));
               }));
             var o;
@@ -84091,8 +84134,8 @@
             (t.prototype.postMessage = function(t, e) {
               return this.worker
                 .pipe(
-                  Object(Mn.a)(1),
-                  Object(Cn.a)(function(n) {
+                  Object(Ln.a)(1),
+                  Object(Tn.a)(function(n) {
                     n.postMessage(Object(ke.__assign)({ action: t }, e));
                   })
                 )
@@ -84115,7 +84158,7 @@
               );
             }),
             (t.prototype.nextEventOfType = function(t) {
-              return this.eventsOfType(t).pipe(Object(Mn.a)(1));
+              return this.eventsOfType(t).pipe(Object(Ln.a)(1));
             }),
             (t.prototype.waitForStatus = function(t) {
               return this.eventsOfType('STATUS')
@@ -84123,7 +84166,7 @@
                   Object(l.a)(function(e) {
                     return e.nonce === t;
                   }),
-                  Object(Mn.a)(1),
+                  Object(Ln.a)(1),
                   Object(u.a)(function(t) {
                     if (!t.status) throw new Error(t.error);
                   })
@@ -84140,10 +84183,10 @@
             t
           );
         })(),
-        On = (function() {
+        An = (function() {
           function t(t) {
-            if (((this.sw = t), (this.subscriptionChanges = new yn.a()), !t.isEnabled))
-              return (this.messages = wn), void (this.subscription = wn);
+            if (((this.sw = t), (this.subscriptionChanges = new kn.a()), !t.isEnabled))
+              return (this.messages = Sn), void (this.subscription = Sn);
             (this.messages = this.sw.eventsOfType('PUSH').pipe(
               Object(u.a)(function(t) {
                 return t.data;
@@ -84155,7 +84198,7 @@
                 })
               ));
             var e = this.pushManager.pipe(
-              Object(xn.a)(function(t) {
+              Object(Dn.a)(function(t) {
                 return t.getSubscription();
               })
             );
@@ -84171,7 +84214,7 @@
             }),
             (t.prototype.requestSubscription = function(t) {
               var e = this;
-              if (!this.sw.isEnabled) return Promise.reject(new Error(Sn));
+              if (!this.sw.isEnabled) return Promise.reject(new Error(En));
               for (
                 var n = { userVisibleOnly: !0 },
                   i = this.decodeBase64(t.serverPublicKey.replace(/_/g, '/').replace(/-/g, '+')),
@@ -84185,10 +84228,10 @@
                 (n.applicationServerKey = r),
                 this.pushManager
                   .pipe(
-                    Object(xn.a)(function(t) {
+                    Object(Dn.a)(function(t) {
                       return t.subscribe(n);
                     }),
-                    Object(Mn.a)(1)
+                    Object(Ln.a)(1)
                   )
                   .toPromise()
                   .then(function(t) {
@@ -84201,8 +84244,8 @@
               return this.sw.isEnabled
                 ? this.subscription
                     .pipe(
-                      Object(Mn.a)(1),
-                      Object(xn.a)(function(e) {
+                      Object(Ln.a)(1),
+                      Object(Dn.a)(function(e) {
                         if (null === e) throw new Error('Not subscribed to push notifications.');
                         return e.unsubscribe().then(function(e) {
                           if (!e) throw new Error('Unsubscribe failed!');
@@ -84211,7 +84254,7 @@
                       })
                     )
                     .toPromise()
-                : Promise.reject(new Error(Sn));
+                : Promise.reject(new Error(En));
             }),
             (t.prototype.decodeBase64 = function(t) {
               return atob(t);
@@ -84219,9 +84262,9 @@
             t
           );
         })(),
-        Ln = (function() {
+        In = (function() {
           function t(t) {
-            if (((this.sw = t), !t.isEnabled)) return (this.available = wn), void (this.activated = wn);
+            if (((this.sw = t), !t.isEnabled)) return (this.available = Sn), void (this.activated = Sn);
             (this.available = this.sw.eventsOfType('UPDATE_AVAILABLE')),
               (this.activated = this.sw.eventsOfType('UPDATE_ACTIVATED'));
           }
@@ -84234,23 +84277,23 @@
               configurable: !0
             }),
             (t.prototype.checkForUpdate = function() {
-              if (!this.sw.isEnabled) return Promise.reject(new Error(Sn));
+              if (!this.sw.isEnabled) return Promise.reject(new Error(En));
               var t = this.sw.generateNonce();
               return this.sw.postMessageWithStatus('CHECK_FOR_UPDATES', { statusNonce: t }, t);
             }),
             (t.prototype.activateUpdate = function() {
-              if (!this.sw.isEnabled) return Promise.reject(new Error(Sn));
+              if (!this.sw.isEnabled) return Promise.reject(new Error(En));
               var t = this.sw.generateNonce();
               return this.sw.postMessageWithStatus('ACTIVATE_UPDATE', { statusNonce: t }, t);
             }),
             t
           );
         })(),
-        Tn = (function() {
+        Pn = (function() {
           return function() {};
         })(),
-        En = new i.InjectionToken('NGSW_REGISTER_SCRIPT');
-      function jn(t, e, n, r) {
+        Rn = new i.InjectionToken('NGSW_REGISTER_SCRIPT');
+      function Yn(t, e, n, r) {
         return function() {
           var o = t.get(i.ApplicationRef);
           if (Object(x.t)(r) && 'serviceWorker' in navigator && !1 !== n.enabled) {
@@ -84259,7 +84302,7 @@
                 Object(l.a)(function(t) {
                   return !!t;
                 }),
-                Object(Mn.a)(1)
+                Object(Ln.a)(1)
               )
               .toPromise();
             navigator.serviceWorker.addEventListener('controllerchange', function() {
@@ -84272,10 +84315,10 @@
           }
         };
       }
-      function An(t, e) {
-        return new Dn(Object(x.t)(e) && !1 !== t.enabled ? navigator.serviceWorker : void 0);
+      function Fn(t, e) {
+        return new jn(Object(x.t)(e) && !1 !== t.enabled ? navigator.serviceWorker : void 0);
       }
-      var In = (function() {
+      var Nn = (function() {
           function t() {}
           var e;
           return (
@@ -84286,10 +84329,10 @@
                 {
                   ngModule: e,
                   providers: [
-                    { provide: En, useValue: t },
-                    { provide: Tn, useValue: n },
-                    { provide: Dn, useFactory: An, deps: [Tn, i.PLATFORM_ID] },
-                    { provide: i.APP_INITIALIZER, useFactory: jn, deps: [i.Injector, En, Tn, i.PLATFORM_ID], multi: !0 }
+                    { provide: Rn, useValue: t },
+                    { provide: Pn, useValue: n },
+                    { provide: jn, useFactory: Fn, deps: [Pn, i.PLATFORM_ID] },
+                    { provide: i.APP_INITIALIZER, useFactory: Yn, deps: [i.Injector, Rn, Pn, i.PLATFORM_ID], multi: !0 }
                   ]
                 }
               );
@@ -84297,34 +84340,38 @@
             t
           );
         })(),
-        Pn = n('gHic'),
-        Rn = n('ihYY'),
-        Yn = n('4tE/'),
-        Fn = n('o3x0'),
-        Nn = n('jQLj'),
-        Hn = n('uGex'),
-        Vn = n('v9Dh'),
-        zn = n('4epT'),
-        Wn = n('OkvK'),
-        Bn = n('wmQ5'),
-        Un = n('4vU7'),
-        qn = n('dXti'),
-        Gn = n('+YFA'),
-        Kn = n('J6E/'),
-        Zn = n('Lo2u'),
-        Jn = n('u7R8'),
-        Qn = n('/dO6'),
-        Xn = n('r43C'),
-        $n = n('Z+uX'),
-        ti = n('9It4'),
-        ei = n('w+lc'),
-        ni = n('vARd'),
-        ii = n('Lwpp'),
-        ri = n('y4qS'),
-        oi = n('BHnd'),
-        ai = n('La40'),
-        si = n('vvyD'),
-        li = (function() {
+        Hn = n('gHic'),
+        Vn = n('ihYY'),
+        zn = n('4tE/'),
+        Wn = n('o3x0'),
+        Bn = n('jQLj'),
+        Un = n('uGex'),
+        qn = n('v9Dh'),
+        Gn = n('4epT'),
+        Kn = n('OkvK'),
+        Zn = n('wmQ5'),
+        Jn = n('4vU7'),
+        Qn = n('dXti'),
+        Xn = n('+YFA'),
+        $n = n('J6E/'),
+        ti = n('Lo2u'),
+        ei = (function() {
+          function t() {}
+          return (t.prototype.ngOnInit = function() {}), t;
+        })(),
+        ni = n('u7R8'),
+        ii = n('/dO6'),
+        ri = n('r43C'),
+        oi = n('Z+uX'),
+        ai = n('9It4'),
+        si = n('w+lc'),
+        li = n('vARd'),
+        ui = n('Lwpp'),
+        ci = n('y4qS'),
+        di = n('BHnd'),
+        hi = n('La40'),
+        pi = n('vvyD'),
+        fi = (function() {
           function t() {}
           return (
             (t.childRoutes = function(t) {
@@ -84333,43 +84380,43 @@
             t
           );
         })(),
-        ui = { title: Object(d.c)('Home') },
-        ci = (li.childRoutes([
-          { path: '', redirectTo: '/home', pathMatch: 'full' },
-          { path: 'home', component: ze, data: ui }
+        mi = { title: Object(d.c)('Home') },
+        _i = (fi.childRoutes([{ path: 'home', component: ze, data: mi }]),
+        (function() {
+          return function() {};
+        })()),
+        gi = { title: Object(d.c)('Login') },
+        yi = (function() {
+          return function() {};
+        })(),
+        vi = n('znf/'),
+        bi = n('pKmL'),
+        wi = n('3pJQ'),
+        xi = n('V9q+'),
+        ki = (function() {
+          return function() {};
+        })(),
+        Mi = (function() {
+          return function() {};
+        })(),
+        Ci = (function() {
+          return function() {};
+        })(),
+        Si = (function() {
+          return function() {};
+        })(),
+        Di = (fi.childRoutes([
+          { path: 'auth-callback', component: un },
+          { path: 'about', loadChildren: 'app/about/about.module#AboutModule' }
         ]),
         (function() {
           return function() {};
         })()),
-        di = { title: Object(d.c)('Login') },
-        hi = (function() {
-          return function() {};
-        })(),
-        pi = n('znf/'),
-        fi = n('pKmL'),
-        mi = n('3pJQ'),
-        _i = n('V9q+'),
-        gi = (function() {
-          return function() {};
-        })(),
-        yi = (function() {
-          return function() {};
-        })(),
-        vi = (function() {
-          return function() {};
-        })(),
-        bi = (function() {
-          return function() {};
-        })(),
-        wi = (li.childRoutes([{ path: 'about', loadChildren: 'app/about/about.module#AboutModule' }]),
-        (function() {
-          return function() {};
-        })()),
-        xi = n('YSh2'),
-        ki = i['\u0275cmf'](o, [p], function(t) {
+        Oi = n('YSh2'),
+        Li = i['\u0275cmf'](o, [p], function(t) {
           return i['\u0275mod']([
             i['\u0275mpd'](512, i.ComponentFactoryResolver, i['\u0275CodegenComponentFactoryResolver'], [
-              [8, [f.a, m.b, m.a, _.a, g.a, g.b, y.a, St, Ze, ln, fn]],
+              [8, [f.a, m.b, m.a, _.a, g.a, g.b, y.a, St, Ze, ln, pn, vn]],
               [3, i.ComponentFactoryResolver],
               i.NgModuleRef
             ]),
@@ -84392,15 +84439,15 @@
             i['\u0275mpd'](4608, C.e, C.e, [C.d, i.NgZone]),
             i['\u0275mpd'](135680, C.n, C.n, [x.d]),
             i['\u0275mpd'](4608, C.l, C.l, [C.e, C.n]),
-            i['\u0275mpd'](5120, mn.a, L.e, []),
-            i['\u0275mpd'](5120, mn.c, L.f, []),
-            i['\u0275mpd'](4608, mn.b, L.d, [x.d, mn.a, mn.c]),
-            i['\u0275mpd'](5120, i.RendererFactory2, L.g, [C.l, mn.b, i.NgZone]),
+            i['\u0275mpd'](5120, bn.a, L.e, []),
+            i['\u0275mpd'](5120, bn.c, L.f, []),
+            i['\u0275mpd'](4608, bn.b, L.d, [x.d, bn.a, bn.c]),
+            i['\u0275mpd'](5120, i.RendererFactory2, L.g, [C.l, bn.b, i.NgZone]),
             i['\u0275mpd'](6144, C.q, null, [C.n]),
             i['\u0275mpd'](4608, i.Testability, i.Testability, [i.NgZone]),
-            i['\u0275mpd'](5120, Dn, An, [Tn, i.PLATFORM_ID]),
-            i['\u0275mpd'](4608, On, On, [Dn]),
-            i['\u0275mpd'](4608, Ln, Ln, [Dn]),
+            i['\u0275mpd'](5120, jn, Fn, [Pn, i.PLATFORM_ID]),
+            i['\u0275mpd'](4608, An, An, [jn]),
+            i['\u0275mpd'](4608, In, In, [jn]),
             i['\u0275mpd'](4608, W.v, W.v, []),
             i['\u0275mpd'](4608, We.i, We.o, [x.d, i.PLATFORM_ID, We.m]),
             i['\u0275mpd'](4608, We.p, We.p, [We.i, We.n]),
@@ -84417,8 +84464,8 @@
             i['\u0275mpd'](4608, We.h, We.h, [We.j]),
             i['\u0275mpd'](6144, We.b, null, [We.h]),
             i['\u0275mpd'](4608, We.f, We.k, [We.b, i.Injector]),
-            i['\u0275mpd'](4608, We.c, Pn.b, [We.f, i.Injector, [2, Pn.a]]),
-            i['\u0275mpd'](4608, Rn.b, L.c, [i.RendererFactory2, C.b]),
+            i['\u0275mpd'](4608, We.c, Hn.b, [We.f, i.Injector, [2, Hn.a]]),
+            i['\u0275mpd'](4608, Vn.b, L.c, [i.RendererFactory2, C.b]),
             i['\u0275mpd'](4608, nt.a, nt.a, [
               nt.g,
               nt.c,
@@ -84432,22 +84479,22 @@
               [2, x.g]
             ]),
             i['\u0275mpd'](5120, nt.h, nt.i, [nt.a]),
-            i['\u0275mpd'](5120, Yn.a, Yn.b, [nt.a]),
+            i['\u0275mpd'](5120, zn.a, zn.b, [nt.a]),
             i['\u0275mpd'](4608, Tt.c, Tt.c, []),
             i['\u0275mpd'](4608, M.d, M.d, []),
-            i['\u0275mpd'](5120, Fn.b, Fn.c, [nt.a]),
-            i['\u0275mpd'](135680, Fn.d, Fn.d, [nt.a, i.Injector, [2, x.g], [2, Fn.a], Fn.b, [3, Fn.d], nt.c]),
-            i['\u0275mpd'](4608, Nn.h, Nn.h, []),
-            i['\u0275mpd'](5120, Nn.a, Nn.b, [nt.a]),
+            i['\u0275mpd'](5120, Wn.b, Wn.c, [nt.a]),
+            i['\u0275mpd'](135680, Wn.d, Wn.d, [nt.a, i.Injector, [2, x.g], [2, Wn.a], Wn.b, [3, Wn.d], nt.c]),
+            i['\u0275mpd'](4608, Bn.h, Bn.h, []),
+            i['\u0275mpd'](5120, Bn.a, Bn.b, [nt.a]),
             i['\u0275mpd'](5120, et.b, et.g, [nt.a]),
             i['\u0275mpd'](4608, M.c, M.y, [[2, M.h], S.a]),
-            i['\u0275mpd'](5120, Hn.a, Hn.b, [nt.a]),
-            i['\u0275mpd'](5120, Vn.a, Vn.b, [nt.a]),
-            i['\u0275mpd'](5120, zn.b, zn.a, [[3, zn.b]]),
-            i['\u0275mpd'](5120, Wn.b, Wn.a, [[3, Wn.b]]),
-            i['\u0275mpd'](5120, Bn.b, Bn.a, [[3, Bn.b]]),
+            i['\u0275mpd'](5120, Un.a, Un.b, [nt.a]),
+            i['\u0275mpd'](5120, qn.a, qn.b, [nt.a]),
+            i['\u0275mpd'](5120, Gn.b, Gn.a, [[3, Gn.b]]),
+            i['\u0275mpd'](5120, Kn.b, Kn.a, [[3, Kn.b]]),
+            i['\u0275mpd'](5120, Zn.b, Zn.a, [[3, Zn.b]]),
             i['\u0275mpd'](4608, gt.a, gt.a, []),
-            i['\u0275mpd'](4608, Un.a, Un.a, [a.l, gt.a]),
+            i['\u0275mpd'](4608, Jn.a, Jn.a, [a.l, gt.a]),
             i['\u0275mpd'](4608, tt.m, tt.m, []),
             i['\u0275mpd'](4608, tt.h, tt.g, []),
             i['\u0275mpd'](4608, tt.c, tt.f, []),
@@ -84455,10 +84502,11 @@
             i['\u0275mpd'](4608, tt.b, tt.a, []),
             i['\u0275mpd'](4608, tt.l, tt.l, [tt.m, tt.h, tt.c, tt.j, tt.b, tt.n, tt.o]),
             i['\u0275mpd'](4608, yt.a, yt.a, [tt.l]),
-            i['\u0275mpd'](4608, qn.a, qn.a, []),
-            i['\u0275mpd'](4608, Gn.a, Gn.a, []),
-            i['\u0275mpd'](4608, Kn.a, Kn.a, []),
-            i['\u0275mpd'](4608, Zn.a, Zn.a, [qn.a]),
+            i['\u0275mpd'](4608, Qn.a, Qn.a, []),
+            i['\u0275mpd'](4608, Xn.a, Xn.a, []),
+            i['\u0275mpd'](4608, $n.a, $n.a, []),
+            i['\u0275mpd'](4608, ti.a, ti.a, [Qn.a]),
+            i['\u0275mpd'](4608, ei, ei, []),
             i['\u0275mpd'](4608, b.j, b.i, [b.d, b.g]),
             i['\u0275mpd'](5120, a.i, a.E, [a.C]),
             i['\u0275mpd'](
@@ -84479,7 +84527,8 @@
             i['\u0275mpd'](5120, a.F, a.x, [a.l, x.s, a.h]),
             i['\u0275mpd'](4608, De, Le, [a.l, x.g]),
             i['\u0275mpd'](4608, Oe, Oe, [De, Se]),
-            i['\u0275mpd'](4608, cn, cn, [Oe]),
+            i['\u0275mpd'](4608, mn, mn, [Oe]),
+            i['\u0275mpd'](4608, un, un, [a.a]),
             i['\u0275mpd'](1073742336, x.c, x.c, []),
             i['\u0275mpd'](1024, i.ErrorHandler, C.r, []),
             i['\u0275mpd'](
@@ -84491,15 +84540,15 @@
               []
             ),
             i['\u0275mpd'](512, a.C, a.C, [i.Injector]),
-            i['\u0275mpd'](256, En, './ngsw-worker.js', []),
-            i['\u0275mpd'](256, Tn, { enabled: !0 }, []),
+            i['\u0275mpd'](256, Rn, './ngsw-worker.js', []),
+            i['\u0275mpd'](256, Pn, { enabled: !0 }, []),
             i['\u0275mpd'](
               1024,
               i.APP_INITIALIZER,
               function(t, e, n, i, r, o) {
-                return [C.s(t), a.D(e), jn(n, i, r, o)];
+                return [C.s(t), a.D(e), Yn(n, i, r, o)];
               },
-              [[2, i.NgProbeToken], a.C, i.Injector, En, Tn, i.PLATFORM_ID]
+              [[2, i.NgProbeToken], a.C, i.Injector, Rn, Pn, i.PLATFORM_ID]
             ),
             i['\u0275mpd'](512, i.ApplicationInitStatus, i.ApplicationInitStatus, [[2, i.APP_INITIALIZER]]),
             i['\u0275mpd'](131584, i.ApplicationRef, i.ApplicationRef, [
@@ -84512,7 +84561,7 @@
             ]),
             i['\u0275mpd'](1073742336, i.ApplicationModule, i.ApplicationModule, [i.ApplicationRef]),
             i['\u0275mpd'](1073742336, C.a, C.a, [[3, C.a]]),
-            i['\u0275mpd'](1073742336, In, In, []),
+            i['\u0275mpd'](1073742336, Nn, Nn, []),
             i['\u0275mpd'](1073742336, W.t, W.t, []),
             i['\u0275mpd'](1073742336, W.i, W.i, []),
             i['\u0275mpd'](1073742336, We.e, We.e, []),
@@ -84528,22 +84577,22 @@
             i['\u0275mpd'](1073742336, it.g, it.g, []),
             i['\u0275mpd'](1073742336, D.c, D.c, []),
             i['\u0275mpd'](1073742336, nt.e, nt.e, []),
-            i['\u0275mpd'](1073742336, Yn.c, Yn.c, []),
+            i['\u0275mpd'](1073742336, zn.c, zn.c, []),
             i['\u0275mpd'](1073742336, pt.c, pt.c, []),
-            i['\u0275mpd'](1073742336, Jn.a, Jn.a, []),
+            i['\u0275mpd'](1073742336, ni.a, ni.a, []),
             i['\u0275mpd'](1073742336, Lt.g, Lt.g, []),
             i['\u0275mpd'](1073742336, Tt.d, Tt.d, []),
             i['\u0275mpd'](1073742336, ye.c, ye.c, []),
-            i['\u0275mpd'](1073742336, Qn.b, Qn.b, []),
-            i['\u0275mpd'](1073742336, Fn.g, Fn.g, []),
+            i['\u0275mpd'](1073742336, ii.b, ii.b, []),
+            i['\u0275mpd'](1073742336, Wn.g, Wn.g, []),
             i['\u0275mpd'](1073742336, O.a, O.a, []),
-            i['\u0275mpd'](1073742336, Nn.i, Nn.i, []),
+            i['\u0275mpd'](1073742336, Bn.i, Bn.i, []),
             i['\u0275mpd'](1073742336, H.b, H.b, []),
             i['\u0275mpd'](1073742336, ee.c, ee.c, []),
             i['\u0275mpd'](1073742336, te.c, te.c, []),
             i['\u0275mpd'](1073742336, Dt.e, Dt.e, []),
             i['\u0275mpd'](1073742336, M.o, M.o, []),
-            i['\u0275mpd'](1073742336, Xn.a, Xn.a, []),
+            i['\u0275mpd'](1073742336, ri.a, ri.a, []),
             i['\u0275mpd'](1073742336, mt.c, mt.c, []),
             i['\u0275mpd'](1073742336, Ut.c, Ut.c, []),
             i['\u0275mpd'](1073742336, Bt.b, Bt.b, []),
@@ -84551,24 +84600,24 @@
             i['\u0275mpd'](1073742336, et.e, et.e, []),
             i['\u0275mpd'](1073742336, M.z, M.z, []),
             i['\u0275mpd'](1073742336, M.p, M.p, []),
-            i['\u0275mpd'](1073742336, Hn.c, Hn.c, []),
-            i['\u0275mpd'](1073742336, Vn.c, Vn.c, []),
-            i['\u0275mpd'](1073742336, zn.c, zn.c, []),
-            i['\u0275mpd'](1073742336, $n.a, $n.a, []),
+            i['\u0275mpd'](1073742336, Un.c, Un.c, []),
+            i['\u0275mpd'](1073742336, qn.c, qn.c, []),
+            i['\u0275mpd'](1073742336, Gn.c, Gn.c, []),
+            i['\u0275mpd'](1073742336, oi.a, oi.a, []),
             i['\u0275mpd'](1073742336, qt.c, qt.c, []),
-            i['\u0275mpd'](1073742336, ti.a, ti.a, []),
+            i['\u0275mpd'](1073742336, ai.a, ai.a, []),
             i['\u0275mpd'](1073742336, w.h, w.h, []),
             i['\u0275mpd'](1073742336, Je.c, Je.c, []),
-            i['\u0275mpd'](1073742336, ei.a, ei.a, []),
-            i['\u0275mpd'](1073742336, ni.d, ni.d, []),
-            i['\u0275mpd'](1073742336, Wn.c, Wn.c, []),
-            i['\u0275mpd'](1073742336, ii.d, ii.d, []),
-            i['\u0275mpd'](1073742336, Bn.c, Bn.c, []),
-            i['\u0275mpd'](1073742336, ri.o, ri.o, []),
-            i['\u0275mpd'](1073742336, oi.a, oi.a, []),
-            i['\u0275mpd'](1073742336, ai.a, ai.a, []),
-            i['\u0275mpd'](1073742336, ut.b, ut.b, []),
             i['\u0275mpd'](1073742336, si.a, si.a, []),
+            i['\u0275mpd'](1073742336, li.d, li.d, []),
+            i['\u0275mpd'](1073742336, Kn.c, Kn.c, []),
+            i['\u0275mpd'](1073742336, ui.d, ui.d, []),
+            i['\u0275mpd'](1073742336, Zn.c, Zn.c, []),
+            i['\u0275mpd'](1073742336, ci.o, ci.o, []),
+            i['\u0275mpd'](1073742336, di.a, di.a, []),
+            i['\u0275mpd'](1073742336, hi.a, hi.a, []),
+            i['\u0275mpd'](1073742336, ut.b, ut.b, []),
+            i['\u0275mpd'](1073742336, pi.a, pi.a, []),
             i['\u0275mpd'](1024, a.v, a.z, [[3, a.l]]),
             i['\u0275mpd'](512, a.t, a.c, []),
             i['\u0275mpd'](512, a.b, a.b, []),
@@ -84589,21 +84638,21 @@
                     {
                       path: '',
                       component: xt,
-                      children: [
-                        { path: '', redirectTo: '/home', pathMatch: 'full' },
-                        { path: 'home', component: ze, data: ui }
-                      ],
-                      canActivate: [Un.a],
+                      children: [{ path: 'home', component: ze, data: mi }],
+                      canActivate: [Jn.a],
                       data: { reuse: !0 }
                     }
                   ],
-                  [{ path: 'login', component: tn, data: di }],
+                  [{ path: 'login', component: tn, data: gi }],
                   [
                     {
                       path: '',
                       component: xt,
-                      children: [{ path: 'about', loadChildren: 'app/about/about.module#AboutModule' }],
-                      canActivate: [Un.a],
+                      children: [
+                        { path: 'auth-callback', component: un },
+                        { path: 'about', loadChildren: 'app/about/about.module#AboutModule' }
+                      ],
+                      canActivate: [Jn.a],
                       data: { reuse: !0 }
                     },
                     { path: '**', redirectTo: '', pathMatch: 'full' }
@@ -84612,7 +84661,7 @@
               },
               []
             ),
-            i['\u0275mpd'](512, a.k, pi.a, []),
+            i['\u0275mpd'](512, a.k, vi.a, []),
             i['\u0275mpd'](1024, a.l, a.A, [
               i.ApplicationRef,
               a.t,
@@ -84627,38 +84676,38 @@
               [2, a.k]
             ]),
             i['\u0275mpd'](1073742336, a.p, a.p, [[2, a.v], [2, a.l]]),
-            i['\u0275mpd'](1073742336, fi.a, fi.a, [[3, fi.a]]),
+            i['\u0275mpd'](1073742336, bi.a, bi.a, [[3, bi.a]]),
             i['\u0275mpd'](1073742336, b.e, b.e, []),
             i['\u0275mpd'](1073742336, v.c, v.c, []),
             i['\u0275mpd'](1073742336, F.b, F.b, []),
-            i['\u0275mpd'](1073742336, mi.a, mi.a, []),
-            i['\u0275mpd'](1073742336, _i.a, _i.a, [[2, b.k], i.PLATFORM_ID]),
+            i['\u0275mpd'](1073742336, wi.a, wi.a, []),
+            i['\u0275mpd'](1073742336, xi.a, xi.a, [[2, b.k], i.PLATFORM_ID]),
             i['\u0275mpd'](1073742336, ue.ChartsModule, ue.ChartsModule, []),
-            i['\u0275mpd'](1073742336, gi, gi, []),
-            i['\u0275mpd'](1073742336, yi, yi, []),
+            i['\u0275mpd'](1073742336, ki, ki, []),
+            i['\u0275mpd'](1073742336, Mi, Mi, []),
             i['\u0275mpd'](1073742336, Ee, Ee, []),
             i['\u0275mpd'](1073742336, je, je, []),
             i['\u0275mpd'](1073742336, W.q, W.q, []),
-            i['\u0275mpd'](1073742336, ci, ci, []),
-            i['\u0275mpd'](1073742336, vi, vi, []),
-            i['\u0275mpd'](1073742336, hi, hi, []),
-            i['\u0275mpd'](1073742336, bi, bi, []),
-            i['\u0275mpd'](1073742336, wi, wi, []),
+            i['\u0275mpd'](1073742336, _i, _i, []),
+            i['\u0275mpd'](1073742336, Ci, Ci, []),
+            i['\u0275mpd'](1073742336, yi, yi, []),
+            i['\u0275mpd'](1073742336, Si, Si, []),
+            i['\u0275mpd'](1073742336, Di, Di, []),
             i['\u0275mpd'](1073742336, o, o, []),
             i['\u0275mpd'](256, i['\u0275APP_ROOT'], !0, []),
             i['\u0275mpd'](256, We.m, 'XSRF-TOKEN', []),
             i['\u0275mpd'](256, We.n, 'X-XSRF-TOKEN', []),
             i['\u0275mpd'](256, L.a, 'BrowserAnimations', []),
-            i['\u0275mpd'](256, Qn.a, { separatorKeyCodes: [xi.f] }, []),
+            i['\u0275mpd'](256, ii.a, { separatorKeyCodes: [Oi.f] }, []),
             i['\u0275mpd'](256, M.g, M.k, []),
             i['\u0275mpd'](256, tt.n, void 0, []),
             i['\u0275mpd'](256, tt.o, void 0, []),
-            i['\u0275mpd'](256, Se, { providers: [cn], settings: {} }, [])
+            i['\u0275mpd'](256, Se, { providers: [mn], settings: {} }, [])
           ]);
         });
       r.a.production && Object(i.enableProdMode)(),
         C.j()
-          .bootstrapModuleFactory(ki)
+          .bootstrapModuleFactory(Li)
           .catch(function(t) {
             return console.log(t);
           });
