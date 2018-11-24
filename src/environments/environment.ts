@@ -14,7 +14,7 @@ export const environment = {
 
   AUTH_CONFIG: {
     backend: {
-      clientID: 'FIhO7vNId2Al1wdfKJDhBuY4NwGZLB5i',
+      clientID: '8Vxwltha1La3uqXooU0FsIqRFeSG1Bxr',
       domain: 'softsky.eu.auth0.com',
       redirectUri: 'http://localhost:4200/auth-callback',
       scope: 'openid',
