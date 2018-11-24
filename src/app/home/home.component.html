@@ -117,13 +117,19 @@
           </mat-expansion-panel-header>
           <mat-panel-description>
             <p><i class="material-icons md-icon-48"> done_outline </i></p>
-            <form method="POST" accept-charset="utf-8" action="https://www.liqpay.ua/api/3/checkout" ngNoForm>
+            <form
+              method="POST"
+              accept-charset="utf-8"
+              action="https://www.liqpay.ua/api/3/checkout"
+              target="_blank"
+              ngNoForm
+            >
               <input
                 type="hidden"
                 name="data"
-                value="eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJwYXkiLCJwdWJsaWNfa2V5IjoiaTEyNjY3MzUxMDM4IiwiYW1vdW50IjoiNSIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiLQnNC+0Lkg0YLQvtCy0LDRgCIsInR5cGUiOiJidXkiLCJsYW5ndWFnZSI6InJ1In0="
+                value="eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJwYXkiLCJwdWJsaWNfa2V5IjoiaTEyNjY3MzUxMDM4IiwiYW1vdW50IjoiMjQ5IiwiY3VycmVuY3kiOiJVQUgiLCJkZXNjcmlwdGlvbiI6ItCg0ZbRh9C90LAg0L/RltC00L/QuNGB0LrQsCDQvdCwINGB0LXRgNCy0ZbRgSDQsdC10LfQv9C10LrQuCDQsNC60LrQsNGD0L3QsCIsInR5cGUiOiJidXkiLCJzYW5kYm94IjoiMSIsImxhbmd1YWdlIjoicnUifQ=="
               />
-              <input type="hidden" name="signature" value="fR1RAJo90hschbkHVrGZHZZWL40=" />
+              <input type="hidden" name="signature" value="QMwBtesYsKfHlX4SdudCMvwcXQE=" />
               <button
                 style="border: none !important; display:inline-block !important;text-align: center !important;padding: 7px 20px !important;
 		                         color: #fff !important; font-size:16px !important; font-weight: 600 !important; font-family:OpenSans, sans-serif; cursor: pointer !important; border-radius: 2px !important;
@@ -136,7 +142,7 @@
                   name="btn_text"
                   style="margin-right: 7px !important; vertical-align: middle !important;"
                 />
-                <span style="vertical-align:middle; !important">{{ 'Pay with LiqPay' | translate }}</span>
+                <span style="vertical-align:middle; !important">Оплатить 249 UAH</span>
               </button>
             </form>
             <!-- <form method="POST" action="https://api.privatbank.ua/p24api/ishop" target="_blank" ngNoForm> -->
