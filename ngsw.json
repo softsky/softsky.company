@@ -1,19 +1,19 @@
 {
   "configVersion": 1,
-  "index": "/softsky.company/index.html",
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/softsky.company/4.4bcee7c0a1d48766724c.js",
-        "/softsky.company/favicon.ico",
-        "/softsky.company/index.html",
-        "/softsky.company/main.2e5b1a053faa04dd5416.js",
-        "/softsky.company/polyfills.1199f771bbe8f108d067.js",
-        "/softsky.company/runtime.0fc349cdb3797b2d0d3f.js",
-        "/softsky.company/styles.7bfa3604a41a30bd7854.css"
+        "/4.4bcee7c0a1d48766724c.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.2e5b1a053faa04dd5416.js",
+        "/polyfills.1199f771bbe8f108d067.js",
+        "/runtime.0fc349cdb3797b2d0d3f.js",
+        "/styles.7bfa3604a41a30bd7854.css"
       ],
       "patterns": []
     },
@@ -22,23 +22,23 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "/softsky.company/assets/logo.png",
-        "/softsky.company/assets/ngx-rocket-logo.png"
+        "/assets/logo.png",
+        "/assets/ngx-rocket-logo.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/softsky.company/4.4bcee7c0a1d48766724c.js": "6c22fe6dd42838d747da57c00bb2944d1cd9bd0a",
-    "/softsky.company/assets/logo.png": "7bf981c2377e5701a14d081a6a4c9e0856f57b81",
-    "/softsky.company/assets/ngx-rocket-logo.png": "7bf981c2377e5701a14d081a6a4c9e0856f57b81",
-    "/softsky.company/favicon.ico": "b65083d46bbf63692d5d2cdd69622e6d7ecae317",
-    "/softsky.company/index.html": "98e1f32df564acbc34b21baee2077be6a8025f7d",
-    "/softsky.company/main.2e5b1a053faa04dd5416.js": "41546030dfe1f357007588b8d2c45f5d3d6b3c83",
-    "/softsky.company/polyfills.1199f771bbe8f108d067.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
-    "/softsky.company/runtime.0fc349cdb3797b2d0d3f.js": "22dd6c470a2cc2ef2c96c21911ec77f4c70ad64d",
-    "/softsky.company/styles.7bfa3604a41a30bd7854.css": "25a812bf164e1600e3b8aab7768c60ab213e1cc9"
+    "/4.4bcee7c0a1d48766724c.js": "6c22fe6dd42838d747da57c00bb2944d1cd9bd0a",
+    "/assets/logo.png": "7bf981c2377e5701a14d081a6a4c9e0856f57b81",
+    "/assets/ngx-rocket-logo.png": "7bf981c2377e5701a14d081a6a4c9e0856f57b81",
+    "/favicon.ico": "b65083d46bbf63692d5d2cdd69622e6d7ecae317",
+    "/index.html": "fdfc62dd098b6aacf73baa0ec9e9e626695faaa4",
+    "/main.2e5b1a053faa04dd5416.js": "41546030dfe1f357007588b8d2c45f5d3d6b3c83",
+    "/polyfills.1199f771bbe8f108d067.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
+    "/runtime.0fc349cdb3797b2d0d3f.js": "22dd6c470a2cc2ef2c96c21911ec77f4c70ad64d",
+    "/styles.7bfa3604a41a30bd7854.css": "25a812bf164e1600e3b8aab7768c60ab213e1cc9"
   },
   "navigationUrls": [
     {
