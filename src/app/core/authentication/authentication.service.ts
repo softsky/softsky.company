@@ -39,6 +39,11 @@ export class AuthenticationService {
     }
   }
 
+  signup() {
+    this.auth0.authorize({
+      mode: 'signUp'
+    });
+  }
   /**
    * Authenticates the user.
    * @param context The login parameters.
@@ -66,8 +71,10 @@ export class AuthenticationService {
     };
 
     const observer = (subscriber: Subscriber<Credentials>) => {
+      data.realm = 'Username-Password-Authentication';
       this.auth0.popup.loginWithCredentials(
-        _.merge(environment.AUTH_CONFIG.backend, data) /* using that way to prevent from typing error */,
+        data,
+        //;_.merge(environment.AUTH_CONFIG.backend, data) /* using that way to prevent from typing error */,
         (err: any, result: Credentials) => {
           log.debug('parameters', err, result);
           if (err) subscriber.error(err);
