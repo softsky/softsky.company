@@ -5,7 +5,6 @@ import { map, scan, reduce, catchError } from 'rxjs/operators';
 import { finalize } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 
-import { QueueService } from './queue.service';
 import { HttpClient } from '@angular/common/http';
 import { Logger } from '@app/core';
 
@@ -42,7 +41,6 @@ export class HomeComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private queueService: QueueService,
     private translate: TranslateService
   ) {
     this.emailForm = fb.group({
@@ -148,30 +146,5 @@ export class HomeComponent implements OnInit {
   handleMainClick(e: any) {
     this.isLoading = true;
     log.debug('Target', e, e.target);
-    this.queueService
-      .queuePop({
-        queue: 'BreachedAccounts'
-      })
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((msg: any) => {
-        if (msg.ReceiveMessageResponse && msg.ReceiveMessageResponse.ReceiveMessageResult) {
-          const a = document.createElement('a');
-
-          this.translate.get('Click to send the email').subscribe(clickHereText => {
-            a.appendChild(document.createTextNode(clickHereText));
-            a.href = msg.ReceiveMessageResponse.ReceiveMessageResult.messages[0].Body;
-            a.target = '_new';
-            a.click();
-          });
-        } else {
-          this.translate.get('Lookes like all emails are sent').subscribe((res: string) => {
-            window.alert(res);
-          });
-        }
-      });
   }
 }

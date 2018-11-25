@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+
+import { HomeComponent } from '@app/home/home.component';
 import { Shell } from '@app/shell/shell.service';
 
 const routes: Routes = [

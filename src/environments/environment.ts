@@ -23,7 +23,7 @@ export const environment = {
     storage: localStorage,
     storageKey: 'currentUser',
     publicRoute: ['public'],
-    defaultUrl: ''
+    defaultUrl: '/home'
   }
 };
 
