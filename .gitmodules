@@ -1,0 +1,3 @@
+[submodule "landing-pages"]
+	path = landing-pages
+	url = https://github.com/softsky/landing-pages.git
