@@ -880,9 +880,6 @@ MIT
 @angular/service-worker
 MIT
 
-@ngx-translate/core
-MIT
-
 auth0-js
 MIT
 The MIT License (MIT)
@@ -907,6 +904,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+
+@ngx-translate/core
+MIT
 
 zone.js
 MIT

@@ -10,7 +10,7 @@
         "/4.4bcee7c0a1d48766724c.js",
         "/favicon.ico",
         "/index.html",
-        "/main.8a502ed0bfe60a5c273f.js",
+        "/main.d5a2a05bacefa35f5be6.js",
         "/polyfills.1199f771bbe8f108d067.js",
         "/runtime.0fc349cdb3797b2d0d3f.js",
         "/styles.7bfa3604a41a30bd7854.css"
@@ -22,8 +22,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "/assets/logo.png",
-        "/assets/ngx-rocket-logo.png"
+        "/assets/logo.png"
       ],
       "patterns": []
     }
@@ -32,10 +31,9 @@
   "hashTable": {
     "/4.4bcee7c0a1d48766724c.js": "6c22fe6dd42838d747da57c00bb2944d1cd9bd0a",
     "/assets/logo.png": "7bf981c2377e5701a14d081a6a4c9e0856f57b81",
-    "/assets/ngx-rocket-logo.png": "7bf981c2377e5701a14d081a6a4c9e0856f57b81",
     "/favicon.ico": "b65083d46bbf63692d5d2cdd69622e6d7ecae317",
-    "/index.html": "565e014d0d50475a3664134c542b9836ea6bff2e",
-    "/main.8a502ed0bfe60a5c273f.js": "f2b8bf78d0fc63d70b82d222900d54ab1fab76d3",
+    "/index.html": "9e209cd14172008400aeb5541c8d61e376a5089b",
+    "/main.d5a2a05bacefa35f5be6.js": "0684fa635c034793ba6a82112075769f730ce403",
     "/polyfills.1199f771bbe8f108d067.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
     "/runtime.0fc349cdb3797b2d0d3f.js": "22dd6c470a2cc2ef2c96c21911ec77f4c70ad64d",
     "/styles.7bfa3604a41a30bd7854.css": "25a812bf164e1600e3b8aab7768c60ab213e1cc9"
