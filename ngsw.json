@@ -1,19 +1,19 @@
 {
   "configVersion": 1,
-  "index": "/index.html",
+  "index": "/a/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/4.4bcee7c0a1d48766724c.js",
-        "/favicon.ico",
-        "/index.html",
-        "/main.1ccda83686b5f98a73f9.js",
-        "/polyfills.1199f771bbe8f108d067.js",
-        "/runtime.0fc349cdb3797b2d0d3f.js",
-        "/styles.7bfa3604a41a30bd7854.css"
+        "/a/4.4bcee7c0a1d48766724c.js",
+        "/a/favicon.ico",
+        "/a/index.html",
+        "/a/main.1ccda83686b5f98a73f9.js",
+        "/a/polyfills.1199f771bbe8f108d067.js",
+        "/a/runtime.0fc349cdb3797b2d0d3f.js",
+        "/a/styles.7bfa3604a41a30bd7854.css"
       ],
       "patterns": []
     },
@@ -22,23 +22,23 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "/assets/loading.svg",
-        "/assets/logo.png"
+        "/a/assets/loading.svg",
+        "/a/assets/logo.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/4.4bcee7c0a1d48766724c.js": "6c22fe6dd42838d747da57c00bb2944d1cd9bd0a",
-    "/assets/loading.svg": "f3905be9712211d3aed8949572cc46c19a77e0f4",
-    "/assets/logo.png": "7bf981c2377e5701a14d081a6a4c9e0856f57b81",
-    "/favicon.ico": "b65083d46bbf63692d5d2cdd69622e6d7ecae317",
-    "/index.html": "7b2373a1dda59aa186d596ff3319d0ecfa2b09f2",
-    "/main.1ccda83686b5f98a73f9.js": "0684fa635c034793ba6a82112075769f730ce403",
-    "/polyfills.1199f771bbe8f108d067.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
-    "/runtime.0fc349cdb3797b2d0d3f.js": "22dd6c470a2cc2ef2c96c21911ec77f4c70ad64d",
-    "/styles.7bfa3604a41a30bd7854.css": "25a812bf164e1600e3b8aab7768c60ab213e1cc9"
+    "/a/4.4bcee7c0a1d48766724c.js": "6c22fe6dd42838d747da57c00bb2944d1cd9bd0a",
+    "/a/assets/loading.svg": "f3905be9712211d3aed8949572cc46c19a77e0f4",
+    "/a/assets/logo.png": "7bf981c2377e5701a14d081a6a4c9e0856f57b81",
+    "/a/favicon.ico": "b65083d46bbf63692d5d2cdd69622e6d7ecae317",
+    "/a/index.html": "2d7022cf075492ae066cf180eb9ded65a11dc418",
+    "/a/main.1ccda83686b5f98a73f9.js": "0684fa635c034793ba6a82112075769f730ce403",
+    "/a/polyfills.1199f771bbe8f108d067.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
+    "/a/runtime.0fc349cdb3797b2d0d3f.js": "22dd6c470a2cc2ef2c96c21911ec77f4c70ad64d",
+    "/a/styles.7bfa3604a41a30bd7854.css": "25a812bf164e1600e3b8aab7768c60ab213e1cc9"
   },
   "navigationUrls": [
     {
