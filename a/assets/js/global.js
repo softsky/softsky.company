@@ -98,7 +98,7 @@ $(function() {
         }
     });
 
-    var date = new Date("7 Jan 2019");
+    var date = new Date("15 Jan 2019");
     var now = new Date();
     var diff = (date.getTime()/1000) - (now.getTime()/1000);
 
@@ -106,32 +106,32 @@ $(function() {
     clock.setCountdown(true);
     clock.start();
 
-  //   /*=====================*/
-	// /* 07 - SUBSCRIBE FORM */
-	// /*=====================*/
-	// $('#contacts_form').on('submit', function(){
-  //       var msg = '';
-  //       var error = 0;
-  //       var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-  //       if (!pattern.test($.trim($('#contacts_form #mail').val()))) {error = 1;msg = msg +  '\n - Your E-mail';}
-  //       if (error){
-  //           $('#mail').addClass('active');
-  //           return false;
-  //       }else{
-  //           var url = 'http://api.softsky.com.ua/v1/subscribe_email';
-  //           var email = $.trim($('#contacts_form #mail').val());
+    /*=====================*/
+	/* 07 - SUBSCRIBE FORM */
+	/*=====================*/
+	$('#contacts_form').on('submit', function(){
+        var msg = '';
+        var error = 0;
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (!pattern.test($.trim($('#contacts_form #mail').val()))) {error = 1;msg = msg +  '\n - Your E-mail';}
+        if (error){
+            $('#mail').addClass('active');
+            return false;
+        }else{
+            var url = 'import.php';
+            var email = $.trim($('#contacts_form #mail').val());
 
-  //           $.post(url,{'email':email},function(data){
-  //           	$('#thank-you-subscribe').addClass('active');
+            $.post(url,{'email':email},function(data){
+            	$('#thank-you-subscribe').addClass('active');
 
-	// 		    $('#mail').removeClass('active');
-	// 			$('#mail').attr('value','');
-  //               $('#mail').val('');
-	// 		});
-	// 		return false;
-  //       }
-	//     return false;
-	// });
+			    $('#mail').removeClass('active');
+				$('#mail').attr('value','');
+                $('#mail').val('');
+			});
+			return false;
+        }
+	    return false;
+	});
 
 	/*===================*/
 	/* 08 - CONTACT FORM */

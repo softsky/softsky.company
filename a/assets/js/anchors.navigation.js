@@ -50,7 +50,7 @@ $(function(){
 
 					$(scrollLinkSelector).removeClass('active');
 					$(scrollLinkSelector+'[href="'+p+'"]').addClass('active');
-					//window.location.hash = '#/'+p.substr(1);
+					window.location.hash = '#/'+p.substr(1);
 					$('.active-slide').removeClass('active-slide');
 					$(p).addClass('active-slide');
 					currentAnchor = p;
@@ -66,7 +66,7 @@ $(function(){
 		$('html,body').stop().animate({ 'scrollTop' : contentTop[anchorObject.attr('href')].top }, time, function(){
 			$(scrollLinkSelector).removeClass('active');
 			anchorObject.addClass('active');
-			//window.location.hash = '#/'+anchorObject.attr('href').substr(1);
+			window.location.hash = '#/'+anchorObject.attr('href').substr(1);
 			currentAnchor = anchorObject.attr('href');
 			scrollFlag = 0;
 
@@ -76,7 +76,7 @@ $(function(){
 		});
 	}
 
-
+	
 
 	$(window).load(function(){
 		setContentTopObject();
@@ -91,6 +91,6 @@ $(function(){
 		setContentTopObject();
 	});
 
-
+	
 
 });

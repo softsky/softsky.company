@@ -113,12 +113,11 @@
     .h1{font-size: 57px; line-height: 39px; font-weight: 900; text-transform: uppercase; color: #3e2924; margin-bottom: 20px;}
     .h2{font-size: 20px; line-height: 20px; font-weight: normal; text-transform: uppercase; color: #3e2924;}
     .h3{font-size: 45px; line-height: 48px; font-weight: 900; text-transform: uppercase; color: #3e2924; margin-bottom: 20px;}
-    .extra-small{font-size: 10px; line-height: 12px}
     .small{font-size: 14px; line-height: 24px;}
     .normall{font-size: 16px; line-height: 28px;}
     .big{font-size: 18px; line-height: 30px;}
     .h2,.h6 { width: 350px; font-weight: bold;}
-    .h7 { font-weight: normal; color: white;}
+
     /*paddings*/
     .margin-top--100{margin-top: -100px;}
     .margin-top-100{margin-top: 100px;}
@@ -379,7 +378,7 @@ header.active .menu-button span:nth-child(4){opacity: 0;}
         .land{bottom: 85px !important;}
     }
     @media (max-height: 640px){
-      #content-wrapper input[type="submit"]{top:00px}
+      #content-wrapper input[type="submit"]{top:10px}
     }
     @media (max-height: 700px) {
         .margin-top-50{margin-top: 20px;}
@@ -1092,7 +1091,7 @@ header.active .menu-button span:nth-child(4){opacity: 0;}
         .cold-left-top{margin-top: 50px;}
         .block.coming-soon-style3 #contacts_form{width: 380px;}
         .cold-right{transform: scale(0.65) ; -webkit-transform: scale(0.65); -moz-transform: scale(0.65); -o-transform: scale(0.65); -ms-transform: scale(0.65);}
-        .cold-right{left: -370px;opacity:0.7}
+        .cold-right{left: -470px;opacity:0.7}
         .h2, .h6 {width: 320px;}
     }
     @media (max-width: 413px) {
@@ -1106,7 +1105,7 @@ header.active .menu-button span:nth-child(4){opacity: 0;}
         .block.coming-soon-style3 .h2{font-size: 12px;}
         .block.coming-soon-style3 .clock{transform: scale(0.529); -webkit-transform: scale(0.529); -moz-transform: scale(0.529); -o-transform: scale(0.529); -ms-transform: scale(0.529);}
         .block.coming-soon-style3 #contacts_form{width: 290px; margin-top: -10px;}
-        .cold-right{left: -300px;opacity:0.7}
+        .cold-right{left: -500px;opacity:0.7}
         .h2, .h6 {
           width: 300px;
         }
