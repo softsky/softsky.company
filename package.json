@@ -19,7 +19,7 @@
     "postinstall": "npm run prettier -s",
     "precommit": "pretty-quick --staged",
     "generate": "ng generate",
-    "gh-pages": "npm run build && ./node_modules/.bin/gh-pages -d dist"
+    "gh-pages": "npm run build && cp CNAME dist && ./node_modules/.bin/gh-pages -d dist"
   },
   "dependencies": {
     "@angular/animations": "^7.0.0",
