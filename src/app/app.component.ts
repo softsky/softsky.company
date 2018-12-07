@@ -9,8 +9,6 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { environment } from '@env/environment';
 import { Logger, I18nService } from '@app/core';
 
-import { Auth0Module } from 'ngx-auth0';
-
 const log = new Logger('App');
 
 @Component({

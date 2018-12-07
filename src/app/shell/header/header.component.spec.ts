@@ -3,7 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MaterialModule } from '@app/material.module';
-import { AuthService, I18nService, MockAuthService } from '@app/core';
+import { AuthenticationService, I18nService, MockAuthenticationService } from '@app/core';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -14,7 +14,7 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, MaterialModule, TranslateModule.forRoot()],
       declarations: [HeaderComponent],
-      providers: [{ provide: AuthService, useClass: MockAuthService }, I18nService]
+      providers: [{ provide: AuthenticationService, useClass: MockAuthenticationService }, I18nService]
     }).compileComponents();
   }));
 

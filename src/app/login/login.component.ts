@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-import { Logger, I18nService, Auth0Service } from '@app/core';
+import { Logger, I18nService, AuthenticationService } from '@app/core';
 
 const log = new Logger('Login');
 
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
-    private authenticationService: Auth0Service
+    private authenticationService: AuthenticationService
   ) {
     this.createForm();
   }
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.isLoading = true;
     this.authenticationService
-      .authenticate()
+      .login(this.loginForm.value)
       .pipe(
         finalize(() => {
           this.loginForm.markAsPristine();
@@ -42,13 +42,13 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe(
-        (credentials: any) => {
+        credentials => {
           log.debug(`${credentials.username} successfully logged in`);
           this.route.queryParams.subscribe(params =>
             this.router.navigate([params.redirect || '/'], { replaceUrl: true })
           );
         },
-        (error: any) => {
+        error => {
           log.debug(`Login error: ${error}`);
           this.error = error;
         }
