@@ -33,7 +33,8 @@ export class HomeComponent implements OnInit {
   breachedSites: Array<any> = [];
   breachedCount: number = 0;
 
-  @ViewChild(LineChartComponent) chart: LineChartComponent;
+  @ViewChild(LineChartComponent)
+  chart: LineChartComponent;
 
   private isVisible: boolean = false;
 

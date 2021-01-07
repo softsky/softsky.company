@@ -20,7 +20,8 @@ export const EMPTY_LABELS = [2012, 2013, 2014, 2015, 2016, 2017, 2018];
   outputs: ['onInitialized']
 })
 export class LineChartComponent implements OnInit {
-  @ViewChild(BaseChartDirective) baseChart: BaseChartDirective;
+  @ViewChild(BaseChartDirective)
+  baseChart: BaseChartDirective;
 
   private onInitialized = new EventEmitter<LineChartComponent>();
 
