@@ -60,7 +60,7 @@
     "@types/node": "^8.10.13",
     "codelyzer": "^4.4.4",
     "gh-pages": "^2.0.1",
-    "hads": "^2.1.0",
+    "hads": "^3.0.3",
     "htmlhint": "^0.10.0",
     "https-proxy-agent": "^2.2.4",
     "husky": "^0.14.3",
