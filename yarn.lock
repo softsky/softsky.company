@@ -9467,9 +9467,9 @@ smart-buffer@^4.1.0:
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
 
 snyk@^1.94.0:
-  version "1.1024.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1024.0.tgz#f9ff2c8660da9cda34ea5807ee8731164b94ab0a"
-  integrity sha512-j0Hk/6kVV4pah3TwnhDCHEDnnIK+SkSYp6F/krz0Z+KfvG0fz3nORuufevjCV1ErIvcuZAnqQdRUVBPYTwfS6g==
+  version "1.1087.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1087.0.tgz#a166244d40f88ca75e6da7652a18c4cddac6f18d"
+  integrity sha512-4Ap2O59+qHCKmzeJu0Kq6S74M409UwRer3ss3wLCNO7vwj8hpfi4wvA+bZc8ywwKv028X9nLhw8hzcJ7bmsavQ==
 
 socket.io-adapter@~2.3.3:
   version "2.3.3"
